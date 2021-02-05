@@ -1,0 +1,120 @@
+2021-02-03 10:50:29.9677|INFO|MemShop.API.Program|Initializing application ...
+2021-02-03 10:50:47.8815|ERROR|Microsoft.EntityFrameworkCore.Database.Command|Failed executing DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE TABLE [Categories] (
+    [Id] int NOT NULL IDENTITY,
+    [Label] nvarchar(50) NOT NULL,
+    [Description] nvarchar(50) NULL,
+    CONSTRAINT [PK_Categories] PRIMARY KEY ([Id])
+);
+2021-02-03 10:50:47.9803|ERROR|MemShop.API.Program|Application stopped because of exception
+2021-02-03 11:02:47.2610|INFO|MemShop.API.Program|Initializing application ...
+2021-02-03 11:03:01.3178|INFO|Microsoft.Hosting.Lifetime|Application started. Press Ctrl+C to shut down.
+2021-02-03 11:03:01.3238|INFO|Microsoft.Hosting.Lifetime|Hosting environment: Development
+2021-02-03 11:03:01.3238|INFO|Microsoft.Hosting.Lifetime|Content root path: C:\Tutos\C#\TDD\MemShop\MemShop.API
+2021-02-03 11:16:36.5978|INFO|MemShop.API.Program|Initializing application ...
+2021-02-03 11:31:15.0296|INFO|MemShop.API.Program|Initializing application ...
+2021-02-03 11:31:28.7812|ERROR|Microsoft.EntityFrameworkCore.Database.Command|Failed executing DbCommand (12ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'Id', N'CategoryId', N'Description', N'Image', N'Label', N'Price', N'Reference') AND [object_id] = OBJECT_ID(N'[Products]'))
+    SET IDENTITY_INSERT [Products] ON;
+INSERT INTO [Products] ([Id], [CategoryId], [Description], [Image], [Label], [Price], [Reference])
+VALUES (1, 0, N'desc1', N'image01.png', N'Product 1', 13.449999999999999E0, N'ref01'),
+(2, 0, N'desc2', N'image02.png', N'Product 2', 18.550000000000001E0, N'ref02'),
+(3, 0, N'desc3', N'image03.png', N'Product 3', 20.254999999999999E0, N'ref03'),
+(4, 0, N'desc4', N'image04.png', N'Product 4', 16.25E0, N'ref04'),
+(5, 0, N'desc5', N'image05.png', N'Product 5', 25.649999999999999E0, N'ref05');
+IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'Id', N'CategoryId', N'Description', N'Image', N'Label', N'Price', N'Reference') AND [object_id] = OBJECT_ID(N'[Products]'))
+    SET IDENTITY_INSERT [Products] OFF;
+2021-02-03 11:31:28.8518|ERROR|MemShop.API.Program|Application stopped because of exception
+2021-02-03 11:34:17.8927|INFO|MemShop.API.Program|Initializing application ...
+2021-02-03 11:34:33.0175|ERROR|Microsoft.EntityFrameworkCore.Database.Command|Failed executing DbCommand (16ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'Id', N'CategoryId', N'Description', N'Image', N'Label', N'Price', N'Reference') AND [object_id] = OBJECT_ID(N'[Products]'))
+    SET IDENTITY_INSERT [Products] ON;
+INSERT INTO [Products] ([Id], [CategoryId], [Description], [Image], [Label], [Price], [Reference])
+VALUES (1, 0, N'desc1', N'image01.png', N'Product 1', 13.449999999999999E0, N'ref01'),
+(2, 0, N'desc2', N'image02.png', N'Product 2', 18.550000000000001E0, N'ref02'),
+(3, 0, N'desc3', N'image03.png', N'Product 3', 20.254999999999999E0, N'ref03'),
+(4, 0, N'desc4', N'image04.png', N'Product 4', 16.25E0, N'ref04'),
+(5, 0, N'desc5', N'image05.png', N'Product 5', 25.649999999999999E0, N'ref05');
+IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'Id', N'CategoryId', N'Description', N'Image', N'Label', N'Price', N'Reference') AND [object_id] = OBJECT_ID(N'[Products]'))
+    SET IDENTITY_INSERT [Products] OFF;
+2021-02-03 11:34:33.1443|ERROR|MemShop.API.Program|Application stopped because of exception
+2021-02-03 11:38:15.8865|INFO|MemShop.API.Program|Initializing application ...
+2021-02-03 11:38:30.2852|INFO|Microsoft.Hosting.Lifetime|Application started. Press Ctrl+C to shut down.
+2021-02-03 11:38:30.2916|INFO|Microsoft.Hosting.Lifetime|Hosting environment: Development
+2021-02-03 11:38:30.2916|INFO|Microsoft.Hosting.Lifetime|Content root path: C:\Tutos\C#\TDD\MemShop\MemShop.API
+2021-02-03 11:39:43.7612|INFO|MemShop.API.Program|Initializing application ...
+2021-02-03 11:40:00.6771|INFO|Microsoft.Hosting.Lifetime|Application started. Press Ctrl+C to shut down.
+2021-02-03 11:40:00.6841|INFO|Microsoft.Hosting.Lifetime|Hosting environment: Development
+2021-02-03 11:40:00.6988|INFO|Microsoft.Hosting.Lifetime|Content root path: C:\Tutos\C#\TDD\MemShop\MemShop.API
+2021-02-03 11:42:15.5272|INFO|MemShop.API.Program|Initializing application ...
+2021-02-03 11:42:39.3702|INFO|Microsoft.Hosting.Lifetime|Application started. Press Ctrl+C to shut down.
+2021-02-03 11:42:39.3702|INFO|Microsoft.Hosting.Lifetime|Hosting environment: Development
+2021-02-03 11:42:39.3702|INFO|Microsoft.Hosting.Lifetime|Content root path: C:\Tutos\C#\TDD\MemShop\MemShop.API
+2021-02-03 11:52:08.5541|INFO|MemShop.API.Program|Initializing application ...
+2021-02-03 11:52:21.9124|INFO|Microsoft.Hosting.Lifetime|Application started. Press Ctrl+C to shut down.
+2021-02-03 11:52:21.9272|INFO|Microsoft.Hosting.Lifetime|Hosting environment: Development
+2021-02-03 11:52:21.9313|INFO|Microsoft.Hosting.Lifetime|Content root path: C:\Tutos\C#\TDD\MemShop\MemShop.API
+2021-02-03 12:02:44.1089|INFO|MemShop.API.Program|Initializing application ...
+2021-02-03 12:02:58.0740|INFO|Microsoft.Hosting.Lifetime|Application started. Press Ctrl+C to shut down.
+2021-02-03 12:02:58.0740|INFO|Microsoft.Hosting.Lifetime|Hosting environment: Development
+2021-02-03 12:02:58.0740|INFO|Microsoft.Hosting.Lifetime|Content root path: C:\Tutos\C#\TDD\MemShop\MemShop.API
+2021-02-03 17:36:28.7330|INFO|MemShop.API.Program|Initializing application ...
+2021-02-03 17:36:49.0769|INFO|Microsoft.Hosting.Lifetime|Application started. Press Ctrl+C to shut down.
+2021-02-03 17:36:49.0895|INFO|Microsoft.Hosting.Lifetime|Hosting environment: Development
+2021-02-03 17:36:49.0895|INFO|Microsoft.Hosting.Lifetime|Content root path: C:\Tutos\C#\TDD\MemShop\MemShop.API
+2021-02-03 17:45:35.6945|INFO|MemShop.API.Program|Initializing application ...
+2021-02-03 17:45:54.2343|INFO|Microsoft.Hosting.Lifetime|Application started. Press Ctrl+C to shut down.
+2021-02-03 17:45:54.2453|INFO|Microsoft.Hosting.Lifetime|Hosting environment: Development
+2021-02-03 17:45:54.2453|INFO|Microsoft.Hosting.Lifetime|Content root path: C:\Tutos\C#\TDD\MemShop\MemShop.API
+2021-02-03 17:49:10.7870|INFO|MemShop.API.Program|Initializing application ...
+2021-02-03 17:49:25.5135|INFO|Microsoft.Hosting.Lifetime|Application started. Press Ctrl+C to shut down.
+2021-02-03 17:49:25.5135|INFO|Microsoft.Hosting.Lifetime|Hosting environment: Development
+2021-02-03 17:49:25.5248|INFO|Microsoft.Hosting.Lifetime|Content root path: C:\Tutos\C#\TDD\MemShop\MemShop.API
+2021-02-03 20:04:44.6731|INFO|MemShop.API.Program|Initializing application ...
+2021-02-03 20:04:59.1238|INFO|Microsoft.Hosting.Lifetime|Application started. Press Ctrl+C to shut down.
+2021-02-03 20:04:59.1238|INFO|Microsoft.Hosting.Lifetime|Hosting environment: Development
+2021-02-03 20:04:59.1362|INFO|Microsoft.Hosting.Lifetime|Content root path: C:\Tutos\C#\TDD\MemShop\MemShop.API
+2021-02-03 20:05:20.8016|INFO|MemShop.API.Controllers.ProductsController|category id with 10 was not found !
+2021-02-03 20:07:17.2085|INFO|MemShop.API.Program|Initializing application ...
+2021-02-03 20:07:30.5787|INFO|Microsoft.Hosting.Lifetime|Application started. Press Ctrl+C to shut down.
+2021-02-03 20:07:30.5787|INFO|Microsoft.Hosting.Lifetime|Hosting environment: Development
+2021-02-03 20:07:30.5929|INFO|Microsoft.Hosting.Lifetime|Content root path: C:\Tutos\C#\TDD\MemShop\MemShop.API
+2021-02-03 20:13:42.8608|INFO|MemShop.API.Program|Initializing application ...
+2021-02-03 20:13:57.0764|INFO|Microsoft.Hosting.Lifetime|Application started. Press Ctrl+C to shut down.
+2021-02-03 20:13:57.0764|INFO|Microsoft.Hosting.Lifetime|Hosting environment: Development
+2021-02-03 20:13:57.0873|INFO|Microsoft.Hosting.Lifetime|Content root path: C:\Tutos\C#\TDD\MemShop\MemShop.API
+2021-02-03 20:14:00.1113|ERROR|Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware|An unhandled exception has occurred while executing the request.
+2021-02-03 20:14:50.7927|INFO|MemShop.API.Program|Initializing application ...
+2021-02-03 20:15:05.6358|INFO|Microsoft.Hosting.Lifetime|Application started. Press Ctrl+C to shut down.
+2021-02-03 20:15:05.6358|INFO|Microsoft.Hosting.Lifetime|Hosting environment: Development
+2021-02-03 20:15:05.6358|INFO|Microsoft.Hosting.Lifetime|Content root path: C:\Tutos\C#\TDD\MemShop\MemShop.API
+2021-02-03 20:31:07.4405|INFO|MemShop.API.Program|Initializing application ...
+2021-02-03 20:31:21.9407|INFO|Microsoft.Hosting.Lifetime|Application started. Press Ctrl+C to shut down.
+2021-02-03 20:31:21.9472|INFO|Microsoft.Hosting.Lifetime|Hosting environment: Development
+2021-02-03 20:31:21.9472|INFO|Microsoft.Hosting.Lifetime|Content root path: C:\Tutos\C#\TDD\MemShop\MemShop.API
+2021-02-03 20:36:05.8272|INFO|MemShop.API.Program|Initializing application ...
+2021-02-03 20:36:21.0814|INFO|Microsoft.Hosting.Lifetime|Application started. Press Ctrl+C to shut down.
+2021-02-03 20:36:21.0881|INFO|Microsoft.Hosting.Lifetime|Hosting environment: Development
+2021-02-03 20:36:21.0881|INFO|Microsoft.Hosting.Lifetime|Content root path: C:\Tutos\C#\TDD\MemShop\MemShop.API
+2021-02-03 20:38:50.1441|INFO|MemShop.API.Program|Initializing application ...
+2021-02-03 20:39:03.9213|INFO|Microsoft.Hosting.Lifetime|Application started. Press Ctrl+C to shut down.
+2021-02-03 20:39:03.9213|INFO|Microsoft.Hosting.Lifetime|Hosting environment: Development
+2021-02-03 20:39:03.9306|INFO|Microsoft.Hosting.Lifetime|Content root path: C:\Tutos\C#\TDD\MemShop\MemShop.API
+2021-02-03 20:39:37.8502|ERROR|Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware|An unhandled exception has occurred while executing the request.
+2021-02-03 20:41:53.7927|INFO|MemShop.API.Program|Initializing application ...
+2021-02-03 20:42:08.0552|INFO|Microsoft.Hosting.Lifetime|Application started. Press Ctrl+C to shut down.
+2021-02-03 20:42:08.0552|INFO|Microsoft.Hosting.Lifetime|Hosting environment: Development
+2021-02-03 20:42:08.0552|INFO|Microsoft.Hosting.Lifetime|Content root path: C:\Tutos\C#\TDD\MemShop\MemShop.API
+2021-02-03 20:54:22.8549|INFO|MemShop.API.Program|Initializing application ...
+2021-02-03 20:54:37.5201|INFO|Microsoft.Hosting.Lifetime|Application started. Press Ctrl+C to shut down.
+2021-02-03 20:54:37.5252|INFO|Microsoft.Hosting.Lifetime|Hosting environment: Development
+2021-02-03 20:54:37.5252|INFO|Microsoft.Hosting.Lifetime|Content root path: C:\Tutos\C#\TDD\MemShop\MemShop.API
+2021-02-03 20:54:39.1556|FATAL|MemShop.API.Controllers.ProductsController|Exception while getting product of category with id 1.
+2021-02-03 20:55:48.7666|INFO|MemShop.API.Program|Initializing application ...
+2021-02-03 20:56:02.4712|INFO|Microsoft.Hosting.Lifetime|Application started. Press Ctrl+C to shut down.
+2021-02-03 20:56:02.4763|INFO|Microsoft.Hosting.Lifetime|Hosting environment: Development
+2021-02-03 20:56:02.4763|INFO|Microsoft.Hosting.Lifetime|Content root path: C:\Tutos\C#\TDD\MemShop\MemShop.API
+2021-02-03 20:57:42.3060|INFO|MemShop.API.Program|Initializing application ...
+2021-02-03 20:57:56.4330|INFO|Microsoft.Hosting.Lifetime|Application started. Press Ctrl+C to shut down.
+2021-02-03 20:57:56.4464|INFO|Microsoft.Hosting.Lifetime|Hosting environment: Development
+2021-02-03 20:57:56.4464|INFO|Microsoft.Hosting.Lifetime|Content root path: C:\Tutos\C#\TDD\MemShop\MemShop.API

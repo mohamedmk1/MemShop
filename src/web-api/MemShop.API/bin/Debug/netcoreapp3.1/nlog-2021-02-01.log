@@ -1,0 +1,8 @@
+2021-02-01 14:39:40.4586|INFO|Microsoft.Hosting.Lifetime|Application started. Press Ctrl+C to shut down.
+2021-02-01 14:39:40.5193|INFO|Microsoft.Hosting.Lifetime|Hosting environment: Development
+2021-02-01 14:39:40.5270|INFO|Microsoft.Hosting.Lifetime|Content root path: C:\Tutos\C#\TDD\MemShop\MemShop.API
+2021-02-01 14:39:45.2606|INFO|MemShop.API.Controllers.ProductsController|category id with 10 was not found !
+2021-02-01 14:44:59.5432|INFO|MemShop.API.Program|Initializing application ...
+2021-02-01 14:45:03.2404|INFO|Microsoft.Hosting.Lifetime|Application started. Press Ctrl+C to shut down.
+2021-02-01 14:45:03.2485|INFO|Microsoft.Hosting.Lifetime|Hosting environment: Development
+2021-02-01 14:45:03.2485|INFO|Microsoft.Hosting.Lifetime|Content root path: C:\Tutos\C#\TDD\MemShop\MemShop.API
