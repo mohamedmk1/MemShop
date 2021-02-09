@@ -1,0 +1,7 @@
+src/web-app/node-modules/
+src/web-app/.idea
+src/web-app/.browserslistrc
+src/web-app/.editorconfig
+src/web-app/package-lock.json
+src/web-app/yarn.lock
+
