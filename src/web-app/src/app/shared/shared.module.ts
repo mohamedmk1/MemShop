@@ -5,6 +5,8 @@ import {FooterComponent} from './components/footer/footer.component';
 import {NgModule} from '@angular/core';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {RouterModule} from '@angular/router';
+import { LeftMenuComponent } from './components/left-menu/left-menu.component';
+import { NavHeaderComponent } from './components/nav-header/nav-header.component';
 
 const modules = [
   CommonModule,
@@ -19,8 +21,8 @@ const components = [
 ];
 
 @NgModule({
-  declarations: [...components],
-  exports: [...modules, ...components],
+  declarations: [...components, LeftMenuComponent, NavHeaderComponent],
+  exports: [...modules, ...components, LeftMenuComponent, NavHeaderComponent],
   imports: [...modules]
 })
 

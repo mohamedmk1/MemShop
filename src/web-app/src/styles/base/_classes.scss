@@ -1,0 +1,20 @@
+.is-flex {
+  display: flex;
+
+  &.space-between {
+    justify-content: space-between;
+  }
+  &.space-around {
+    justify-content: space-around;
+  }
+}
+
+.is-full-content {
+  height: calc(100vh - 185px);
+  max-height: calc(100vh - 185px);
+  padding: 5px 20px 15px;
+}
+
+.is-full-width {
+  width: 100%;
+}
