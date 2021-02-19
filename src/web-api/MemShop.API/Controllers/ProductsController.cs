@@ -188,7 +188,6 @@ namespace MemShop.API.Controllers
 
             _categoryInfoRepository.Save();
 
-
             return NoContent();
         }
 

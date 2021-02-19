@@ -81,5 +81,20 @@ namespace MemShop.API.Services
         {
             return (_context.SaveChanges() >= 0);
         }
+
+        public void AddCategory(Category category)
+        {
+            _context.Categories.Add(category);
+        }
+
+        public void UpdateCategory(Category category)
+        {
+            _context.Entry(category).State = EntityState.Modified;
+        }
+
+        public void DeleteCategory(Category category)
+        {
+            _context.Categories.Remove(category);
+        }
     }
 }

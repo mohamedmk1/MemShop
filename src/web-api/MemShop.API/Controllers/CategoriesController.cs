@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MemShop.API.Models;
 using MemShop.API.Services;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -31,7 +32,7 @@ namespace MemShop.API.Controllers
             return Ok(_mapper.Map<IEnumerable<CategoryWithoutProductsDto>>(categoryEntities));
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "GetCategory")]
         public IActionResult GetCategory(int id, bool includeProducts = false)
         {
             var category = _categoryInfoRepository.GetCategory(id, includeProducts);
@@ -47,6 +48,133 @@ namespace MemShop.API.Controllers
             }
 
             return Ok(_mapper.Map<CategoryWithoutProductsDto>(category));
+        }
+
+        [HttpPost()]
+        public IActionResult CreateCategory([FromBody] CategoryForCreationDto payload)
+        {
+            if(payload.Label == payload.Description)
+            {
+                ModelState.AddModelError("Description", "Label category must be different from description.");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            var finalCategory = _mapper
+                .Map<Entities.Category>(payload);
+
+            _categoryInfoRepository.AddCategory(finalCategory);
+            _categoryInfoRepository.Save();
+
+            var createdCategoryToReturn = _mapper
+                .Map<Models.CategoryDto>(finalCategory);
+
+            return CreatedAtRoute(
+                "GetCategory",
+                new { id = finalCategory.Id },
+                createdCategoryToReturn);
+
+        }
+
+        [HttpPut("{categoryId}")]
+        public IActionResult UpdateCategory(int categoryId, [FromBody] CategoryForUpdateDto payload) 
+        {
+
+            if (payload.Label == payload.Description)
+            {
+                ModelState.AddModelError("Description", "Label category must be different from description.");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            if (!_categoryInfoRepository.IsCategoryExist(categoryId))
+            {
+                return NotFound();
+            }
+
+            var categoryEntity = _categoryInfoRepository.GetCategory(categoryId, false);
+            
+            if(categoryEntity == null)
+            {
+                return NotFound();
+            }
+
+            _mapper.Map(payload, categoryEntity);
+
+            _categoryInfoRepository.UpdateCategory(categoryEntity);
+
+            _categoryInfoRepository.Save();
+
+            return NoContent();
+        }
+
+        [HttpPatch("{categoryId}")]
+        public IActionResult PartiallyUpdatedCategory(int categoryId, 
+            [FromBody] JsonPatchDocument<CategoryForUpdateDto> patchDoc)
+        {
+            if (!_categoryInfoRepository.IsCategoryExist(categoryId))
+            {
+                return NotFound();
+            }
+
+            var categoryEntity = _categoryInfoRepository
+                .GetCategory(categoryId, false);
+
+            var categoryToPatch = _mapper
+                .Map<CategoryForUpdateDto>(categoryEntity);
+
+            patchDoc.ApplyTo(categoryToPatch, ModelState);
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            if (categoryToPatch.Label == categoryToPatch.Description)
+            {
+                ModelState.AddModelError(
+                    "Description",
+                    "Label category must be different from description.");
+            }
+
+            if (!TryValidateModel(categoryToPatch))
+            {
+                return BadRequest();
+            }
+
+            _mapper.Map(categoryToPatch, categoryEntity);
+
+            _categoryInfoRepository.UpdateCategory(categoryEntity);
+
+            _categoryInfoRepository.Save();
+
+            return NoContent();
+        }
+
+        [HttpDelete("{categoryId}")]
+        public IActionResult DeleteCategory(int categoryId)
+        {
+            if (!_categoryInfoRepository.IsCategoryExist(categoryId))
+            {
+                return NotFound();
+            }
+
+            var categoryEntity = _categoryInfoRepository.GetCategory(categoryId, false);
+            if(categoryEntity == null)
+            {
+                return NotFound();
+            }
+
+            _categoryInfoRepository.DeleteCategory(categoryEntity);
+            _categoryInfoRepository.Save();
+
+            return NoContent();
         }
     }
 }

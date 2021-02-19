@@ -12,6 +12,9 @@ namespace MemShop.API.Profiles
         {
             CreateMap<Entities.Category, Models.CategoryWithoutProductsDto>();
             CreateMap<Entities.Category, Models.CategoryDto>();
+            CreateMap<Models.CategoryForCreationDto, Entities.Category>();
+            CreateMap<Models.CategoryForUpdateDto, Entities.Category>()
+                .ReverseMap();
         }
     }
 }

@@ -10,6 +10,9 @@ namespace MemShop.API.Services
     {
         IEnumerable<Category> GetCategories();
         Category GetCategory(int categoryId, bool includeProducts);
+        void AddCategory(Category category);
+        void UpdateCategory(Category category);
+        void DeleteCategory(Category category);
         IEnumerable<Product> GetProducts(int categoryId);
         Product GetProductForCategory(int categoryId, int productId);
         bool IsCategoryExist(int categoryId);
