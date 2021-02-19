@@ -1,7 +1,13 @@
+src/web-api/MemShop.API/obj/
+src/web-api/MemShop.API/bin/
+src/web-api/.vs/
+
 src/web-app/node-modules/
 src/web-app/.idea
 src/web-app/.browserslistrc
 src/web-app/.editorconfig
 src/web-app/package-lock.json
 src/web-app/yarn.lock
+
+/_tmp
 
