@@ -34,6 +34,16 @@ namespace MemShop.API
                 o.UseSqlServer(connectionString);
             });
 
+            services.AddCors(options =>
+            {
+               
+                options.AddDefaultPolicy(
+                builder =>
+                {
+                    builder.WithOrigins("http://localhost:4200");
+                });
+            });
+
             services.AddScoped<ICategoryInfoRepository, CategoryInfoRepository>();
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
@@ -54,6 +64,8 @@ namespace MemShop.API
             app.UseStatusCodePages();
 
             app.UseRouting();
+
+            app.UseCors();
 
             app.UseEndpoints(endpoints =>
             {
