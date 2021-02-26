@@ -6,7 +6,7 @@ import {Environment} from './environment.model';
 
 export const environment: Environment = {
   production: false,
-  memShopApiService: 'http://localhost:5420/api/'
+  memShopApiService: 'http://localhost:5420/api'
 };
 
 /*

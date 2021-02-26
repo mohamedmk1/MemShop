@@ -2,7 +2,6 @@ import {createAction, props} from '@ngrx/store';
 import {Category} from '../../models/category.model';
 import {List} from 'immutable';
 import {HttpErrorResponse} from '@angular/common/http';
-import {Update} from '@ngrx/entity';
 
 export const loadCategories = createAction('[CategoryManagement] Load categories');
 

@@ -1,4 +1,3 @@
-import {CustomMaterialModule} from '../modules/custom-material-module';
 import {CommonModule} from '@angular/common';
 import {HeaderComponent} from './components/header/header.component';
 import {FooterComponent} from './components/footer/footer.component';
@@ -7,6 +6,8 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import {RouterModule} from '@angular/router';
 import { LeftMenuComponent } from './components/left-menu/left-menu.component';
 import { NavHeaderComponent } from './components/nav-header/nav-header.component';
+import {CustomMaterialModule} from './modules/custom-material.module';
+import {PageNotFoundComponent} from './components/page-not-found/page-not-found.component';
 
 const modules = [
   CommonModule,
@@ -21,7 +22,7 @@ const components = [
 ];
 
 @NgModule({
-  declarations: [...components, LeftMenuComponent, NavHeaderComponent],
+  declarations: [...components, LeftMenuComponent, NavHeaderComponent, PageNotFoundComponent],
   exports: [...modules, ...components, LeftMenuComponent, NavHeaderComponent],
   imports: [...modules]
 })
