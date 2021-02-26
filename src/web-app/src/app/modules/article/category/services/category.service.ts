@@ -30,8 +30,10 @@ export class CategoryService {
         );
     }
 
-    updateCategory(category: Category): Observable<void> {
-        return this.http.put<void>(`${this.apiPathService.getCategoryPath()}/${category.id}`, JSON.stringify(category));
+    updateCategory(category: Category): Observable<Category> {
+        return this.http.put<Category>(`${this.apiPathService.getCategoryPath()}/${category.id}`, JSON.stringify(category)).pipe(
+            map(updatedCategory => Category.fromJson(updatedCategory))
+        );
     }
 
     deleteCategory(id: number): Observable<void> {
