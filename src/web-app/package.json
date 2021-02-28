@@ -31,6 +31,7 @@
     "@ngrx/entity": "^11.0.1",
     "@ngrx/router-store": "latest",
     "@ngrx/store": "^10.1.2",
+    "@ngrx/store-devtools": "^11.0.1",
     "immutable": "^4.0.0-rc.12",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
