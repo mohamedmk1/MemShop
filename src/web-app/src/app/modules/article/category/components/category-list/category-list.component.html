@@ -2,7 +2,7 @@
 
     <h3>Liste des catégories</h3>
 
-    <mat-table mat-table [dataSource]="categories$" class="mat-elevation-z8">
+    <mat-table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
         <ng-container matColumnDef="id">
             <mat-header-cell *matHeaderCellDef>Id</mat-header-cell>
@@ -14,17 +14,17 @@
             <mat-cell *matCellDef="let category"> {{category.label}} </mat-cell>
         </ng-container>
 
-        <!--    <ng-container matColumnDef="actions">-->
-        <!--      <mat-header-cell *matHeaderCellDef></mat-header-cell>-->
-        <!--      <mat-cell *matCellDef="let vehicle">-->
-        <!--        <a mat-icon-button [routerLink]="'/vehicle/edit/' + vehicle.id" class="button-edit">-->
-        <!--          <mat-icon>edit</mat-icon>-->
-        <!--        </a>-->
-        <!--        <button mat-icon-button (click)="deleteVehicle(vehicle.id)" class="button-delete">-->
-        <!--          <mat-icon>delete</mat-icon>-->
-        <!--        </button>-->
-        <!--      </mat-cell>-->
-        <!--    </ng-container>-->
+        <!--<ng-container matColumnDef="actions">
+          <mat-header-cell *matHeaderCellDef></mat-header-cell>
+          <mat-cell *matCellDef="let category">
+            <a mat-icon-button [routerLink]="'/vehicle/edit/' + category.id" class="button-edit">
+              <mat-icon>edit</mat-icon>
+            </a>
+            <button mat-icon-button (click)="deleteVehicle(category.id)" class="button-delete">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </mat-cell>
+        </ng-container>-->
 
         <ng-container matColumnDef="addCategoryColumn">
             <mat-footer-cell *matFooterCellDef>

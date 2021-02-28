@@ -7,7 +7,7 @@ export const loadCategories = createAction('[CategoryManagement] Load categories
 
 export const loadCategoriesSuccess = createAction(
     '[CategoryManagement] Load categories SUCCESS',
-    props< { categories: List<Category> }>()
+    props<{ categories: List<Category> }>()
 );
 
 export const loadCategoriesFailed = createAction(

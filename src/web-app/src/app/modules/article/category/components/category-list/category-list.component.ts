@@ -4,10 +4,10 @@ import {MatTableDataSource} from '@angular/material/table';
 import {Category} from '../../models/category.model';
 import {Store} from '@ngrx/store';
 import {AppState} from '../../../../../app-state';
-import {Observable} from 'rxjs';
 import {List} from 'immutable';
 import {selectCategories} from '../../store';
 import {loadCategories} from '../../store/actions/category.actions';
+import {Observable} from 'rxjs';
 
 @Component({
     selector: 'app-category-list',
@@ -32,8 +32,13 @@ export class CategoryListComponent implements OnInit {
 
     ngOnInit(): void {
         this.store.dispatch(loadCategories());
+        this.categories$
+            .subscribe(categories => this.dataSource.data = categories.toArray());
     }
 
     selectCategory(id: number): void {
+    }
+
+    deleteVehicle(id: number): void {
     }
 }

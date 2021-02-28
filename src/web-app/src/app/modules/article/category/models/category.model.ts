@@ -24,7 +24,7 @@ export class Category implements ValueObject {
             .withDescription(category.description);
     }
 
-    static fromJson(json: object): Category {
+    static fromJson(json: any): Category {
         return this.newBuilder()
             .withId(json['id'])
             .withLabel(json['label'])

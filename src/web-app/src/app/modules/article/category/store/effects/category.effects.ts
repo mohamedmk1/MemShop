@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {CategoryService} from '../../services/category.service';
-import {act, Actions, createEffect, Effect, ofType} from '@ngrx/effects';
+import {Actions, createEffect, ofType} from '@ngrx/effects';
 import {
     addCategory,
     addCategoryFailed,
@@ -26,20 +26,18 @@ export class CategoryEffects {
         private readonly categoryService: CategoryService
     ) {}
 
-    onLoadCategories$ = createEffect(() =>
-        this.actions$.pipe(
+    onLoadCategories$ = createEffect(() => this.actions$.pipe(
             ofType(loadCategories),
             switchMap(() =>
                 this.categoryService.getCategories().pipe(
-                    map((categories) => loadCategoriesSuccess({ categories })),
+                    map(categories => loadCategoriesSuccess({ categories })),
                     catchError((errorResponse) => of(loadCategoriesFailed({ errorResponse })))
                 )
             )
         )
     );
 
-    onLoadCategoryById$ = createEffect(() =>
-        this.actions$.pipe(
+    onLoadCategoryById$ = createEffect(() => this.actions$.pipe(
             ofType(loadCategoryById),
             switchMap((action) =>
                 this.categoryService.getCategoryById(action.categoryId).pipe(
@@ -50,8 +48,7 @@ export class CategoryEffects {
         )
     );
 
-    onAddCategory$ = createEffect(() =>
-        this.actions$.pipe(
+    onAddCategory$ = createEffect(() => this.actions$.pipe(
             ofType(addCategory),
             switchMap((action) =>
                 this.categoryService.createCategory(action.category).pipe(
@@ -62,8 +59,7 @@ export class CategoryEffects {
         )
     );
 
-    onUpdateCategory$ = createEffect(() =>
-        this.actions$.pipe(
+    onUpdateCategory$ = createEffect(() => this.actions$.pipe(
             ofType(updateCategory),
             switchMap((action) =>
                 this.categoryService.updateCategory(action.category).pipe(
@@ -74,8 +70,7 @@ export class CategoryEffects {
         )
     );
 
-    onDeleteCategory$ = createEffect(() =>
-        this.actions$.pipe(
+    onDeleteCategory$ = createEffect(() => this.actions$.pipe(
             ofType(deleteCategory),
             switchMap((action) =>
                 this.categoryService.deleteCategory(action.id).pipe(
