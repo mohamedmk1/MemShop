@@ -77,4 +77,9 @@ export const deleteCategoryFailed = createAction(
 
 export const clearCategories = createAction('[CategoryManagement] Clear categories');
 
+export const setSelectedCategory = createAction(
+    '[CategoryManagement] Set selected category',
+    props<{ category: Category }>()
+);
+
 export const clearSelectedCategory = createAction('[CategoryManagement] Clear selected category');

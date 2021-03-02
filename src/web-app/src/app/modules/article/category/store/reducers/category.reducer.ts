@@ -5,7 +5,7 @@ import {Action, createReducer, on} from '@ngrx/store';
 import {
     addCategorySuccess, clearCategories, clearSelectedCategory,
     deleteCategorySuccess,
-    loadCategoriesSuccess, loadCategoryByIdSuccess,
+    loadCategoriesSuccess, loadCategoryByIdSuccess, setSelectedCategory,
     updateCategorySuccess
 } from '../actions/category.actions';
 
@@ -66,6 +66,14 @@ const _categoryReducer = createReducer(
         return {
             ...state,
             categories: state.categories.filter(category => category.id !== action.id)
+        };
+    }),
+
+    // Set selected category
+    on(setSelectedCategory, (state: CategoryState, action) => {
+        return {
+            ...state,
+            category: action.category
         };
     }),
 

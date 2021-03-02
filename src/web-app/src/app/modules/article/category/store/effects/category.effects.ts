@@ -4,26 +4,28 @@ import {Actions, createEffect, ofType} from '@ngrx/effects';
 import {
     addCategory,
     addCategoryFailed,
-    addCategorySuccess, deleteCategory, deleteCategoryFailed, deleteCategorySuccess,
+    addCategorySuccess, clearSelectedCategory, deleteCategory, deleteCategoryFailed, deleteCategorySuccess,
     loadCategories,
     loadCategoriesFailed,
     loadCategoriesSuccess,
     loadCategoryById,
     loadCategoryByIdFailed,
-    loadCategoryByIdSuccess,
+    loadCategoryByIdSuccess, setSelectedCategory,
     updateCategory,
     updateCategoryFailed,
     updateCategorySuccess
 } from '../actions/category.actions';
-import {catchError, map, switchMap} from 'rxjs/operators';
+import {catchError, map, switchMap, tap} from 'rxjs/operators';
 import {of} from 'rxjs';
+import {Router} from '@angular/router';
 
 
 @Injectable()
 export class CategoryEffects {
     constructor(
         private readonly actions$: Actions,
-        private readonly categoryService: CategoryService
+        private readonly categoryService: CategoryService,
+        private readonly router: Router
     ) {}
 
     onLoadCategories$ = createEffect(() => this.actions$.pipe(
@@ -47,6 +49,16 @@ export class CategoryEffects {
             )
         )
     );
+
+    onLoadCategoryByIdSuccess$ = createEffect(() => this.actions$.pipe(
+        ofType(loadCategoryByIdSuccess),
+        switchMap((action) => of(setSelectedCategory({category: action.category})))
+    ));
+
+    onLoadCategoriesSuccess$ = createEffect(() => this.actions$.pipe(
+        ofType(loadCategoriesSuccess),
+        switchMap(() => of(clearSelectedCategory()))
+    ));
 
     onAddCategory$ = createEffect(() => this.actions$.pipe(
             ofType(addCategory),
@@ -79,5 +91,14 @@ export class CategoryEffects {
                 )
             )
         )
+    );
+
+    onCategoryEditAddSuccess$ = createEffect(
+        () =>
+            this.actions$.pipe(
+                ofType(addCategorySuccess, updateCategorySuccess),
+                tap(() => this.router.navigate(['/category/list']))
+            ),
+        { dispatch: false }
     );
 }
