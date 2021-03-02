@@ -1,117 +1,85 @@
-import {Action} from '@ngrx/store';
+import {createAction, props} from '@ngrx/store';
 import {Category} from '../../models/category.model';
 import {List} from 'immutable';
+import {HttpErrorResponse} from '@angular/common/http';
 
-export enum CategoryManagementActionTypes {
-    LoadCategories = '[CategoryManagement] Load all categories',
-    LoadCategoriesSuccess = '[CategoryManagement] Load all categories success',
-    LoadCategoriesFailure = '[CategoryManagement] Load all categories failure',
+export const loadCategories = createAction('[CategoryManagement] Load categories');
 
-    LoadCategoryById = '[CategoryManagement] Load category by id',
-    LoadCategoryByIdSuccess = '[CategoryManagement] Load category by id success',
-    LoadCategoryByIdFailure = '[CategoryManagement] Load category by id failure',
+export const loadCategoriesSuccess = createAction(
+    '[CategoryManagement] Load categories SUCCESS',
+    props<{ categories: List<Category> }>()
+);
 
-    CreateCategory = '[CategoryManagement] Create category',
-    CreateCategorySuccess = '[CategoryManagement] Create category success',
-    CreateCategoryFailure = '[CategoryManagement] Create category failure',
+export const loadCategoriesFailed = createAction(
+    '[CategoryManagement] Load categories FAILED',
+    props<{ errorResponse: HttpErrorResponse }>()
+);
 
-    UpdateCategory = '[CategoryManagement] Update category',
-    UpdateCategorySuccess = '[CategoryManagement] Update category success',
-    UpdateCategoryFailure = '[CategoryManagement] Update category failure',
+export const loadCategoryById = createAction(
+    '[CategoryManagement] Load category by id',
+    props<{ categoryId: number }>()
+);
 
-    DeleteCategory = '[CategoryManagement] Delete category',
-    DeleteCategorySuccess = '[CategoryManagement] Delete category success',
-    DeleteCategoryFailure = '[CategoryManagement] Delete category failure'
-}
+export const loadCategoryByIdSuccess = createAction(
+    '[CategoryManagement] Load category by id SUCCESS',
+    props<{ category: Category }>()
+);
 
-export class LoadCategories implements Action {
-    readonly type = CategoryManagementActionTypes.LoadCategories;
-    constructor(public payload: any) {}
-}
+export const loadCategoryByIdFailed = createAction(
+    '[CategoryManagement] Load category by id FAILED',
+    props<{ errorResponse: HttpErrorResponse }>()
+);
 
-export class LoadCategoriesSuccess implements Action {
-    readonly type = CategoryManagementActionTypes.LoadCategoriesSuccess;
-    constructor(public payload: List<Category>) {}
-}
+export const addCategory = createAction(
+    '[CategoryManagement] Add category',
+    props<{ category: Category }>()
+);
 
-export class LoadCategoriesFailure implements Action {
-    readonly type = CategoryManagementActionTypes.LoadCategoriesFailure;
-    constructor(public payload: string) {}
-}
+export const addCategorySuccess = createAction(
+    '[CategoryManagement] Add category SUCCESS',
+    props<{ category: Category }>()
+);
 
-export class LoadCategoryById implements Action {
-    readonly type = CategoryManagementActionTypes.LoadCategoryById;
-    constructor(public payload: number) {}
-}
+export const addCategoryFailed = createAction(
+    '[CategoryManagement] Add category FAILED',
+    props<{ errorResponse: HttpErrorResponse }>()
+);
 
-export class LoadCategoryByIdSuccess implements Action {
-    readonly type = CategoryManagementActionTypes.LoadCategoryByIdSuccess;
-    constructor(public payload: Category) {}
-}
+export const updateCategory = createAction(
+    '[CategoryManagement] Update category',
+    props<{ category: Category}>()
+);
 
-export class LoadCategoryByIdFailure implements Action {
-    readonly type = CategoryManagementActionTypes.LoadCategoryByIdFailure;
-    constructor(public payload: string) {}
-}
+export const updateCategorySuccess = createAction(
+    '[CategoryManagement] Update category SUCCESS',
+    props<{ category: Category}>()
+);
 
-export class CreateCategory implements Action {
-    readonly type = CategoryManagementActionTypes.CreateCategory;
-    constructor(public payload: Category) {}
-}
+export const updateCategoryFailed = createAction(
+    '[CategoryManagement] Update category FAILED',
+    props<{ errorResponse: HttpErrorResponse }>()
+);
 
-export class CreateCategorySuccess implements Action {
-    readonly type = CategoryManagementActionTypes.CreateCategorySuccess;
-    constructor(public payload: Category) {}
-}
+export const deleteCategory = createAction(
+    '[CategoryManagement] Delete category',
+    props<{ id: number}>()
+);
 
-export class CreateCategoryFailure implements Action {
-    readonly type = CategoryManagementActionTypes.CreateCategoryFailure;
-    constructor(public payload: string) {}
-}
+export const deleteCategorySuccess = createAction(
+    '[CategoryManagement] Delete category SUCCESS',
+    props<{ id: number}>()
+);
 
-export class UpdateCategory implements Action {
-    readonly type = CategoryManagementActionTypes.UpdateCategory;
-    constructor(public payload: Category) {}
-}
+export const deleteCategoryFailed = createAction(
+    '[CategoryManagement] Delete category FAILED',
+    props<{ errorResponse: HttpErrorResponse }>()
+);
 
-export class UpdateCategorySuccess implements Action {
-    readonly type = CategoryManagementActionTypes.UpdateCategorySuccess;
-    constructor(public payload: any) {}
-}
+export const clearCategories = createAction('[CategoryManagement] Clear categories');
 
-export class UpdateCategoryFailure implements Action {
-    readonly type = CategoryManagementActionTypes.UpdateCategoryFailure;
-    constructor(public payload: string) {}
-}
+export const setSelectedCategory = createAction(
+    '[CategoryManagement] Set selected category',
+    props<{ category: Category }>()
+);
 
-export class DeleteCategory implements Action {
-    readonly type = CategoryManagementActionTypes.DeleteCategory;
-    constructor(public payload: number) {}
-}
-
-export class DeleteCategorySuccess implements Action {
-    readonly type = CategoryManagementActionTypes.DeleteCategorySuccess;
-    constructor(public payload: any) {}
-}
-
-export class DeleteCategoryFailure implements Action {
-    readonly type = CategoryManagementActionTypes.DeleteCategoryFailure;
-    constructor(public payload: string) {}
-}
-
-export type CategoryManagementUnions =
-    | LoadCategories
-    | LoadCategoriesSuccess
-    | LoadCategoriesFailure
-    | LoadCategoryById
-    | LoadCategoryByIdSuccess
-    | LoadCategoryByIdFailure
-    | CreateCategory
-    | CreateCategorySuccess
-    | CreateCategoryFailure
-    | UpdateCategory
-    | UpdateCategorySuccess
-    | UpdateCategoryFailure
-    | DeleteCategory
-    | DeleteCategorySuccess
-    | DeleteCategoryFailure;
+export const clearSelectedCategory = createAction('[CategoryManagement] Clear selected category');

@@ -1,6 +1,6 @@
 <div>
   <app-header></app-header>
-  <app-left-menu></app-left-menu>
+  <app-left-menu [feature]="feature$ | async"></app-left-menu>
 
   <div class="content-wrapper is-flex is-full-content">
     <router-outlet></router-outlet>
