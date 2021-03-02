@@ -11,17 +11,18 @@ import {categoryReducer} from './store/reducers/category.reducer';
 import {CategoryEffects} from './store/effects/category.effects';
 import {AppStateFeatures} from '../../../app-state-features';
 import {CategoryRoutingModule} from './category-routing-module';
+import { CategoryDeleteConfirmDialogComponent } from './components/category-delete-confirm-dialog/category-delete-confirm-dialog.component';
 
 
 @NgModule({
-    declarations: [CategoryPageComponent, CategoryListComponent, CategoryFormComponent],
+    declarations: [CategoryPageComponent, CategoryListComponent, CategoryFormComponent, CategoryDeleteConfirmDialogComponent],
     imports: [
         CommonModule,
         CategoryRoutingModule,
         StoreModule.forFeature(AppStateFeatures.Category, categoryReducer),
         EffectsModule.forFeature([CategoryEffects]),
         SharedModule,
-        ReactiveFormsModule,
+        ReactiveFormsModule
     ],
     providers: [CategoryEffects]
 })

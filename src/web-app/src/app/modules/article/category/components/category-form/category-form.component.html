@@ -1,1 +1,40 @@
-<p>category-form works!</p>
+<div class="category-form-container mat-elevation-z8" >
+    <h3 *ngIf="isNew">Ajouter une nouvelle catégorie</h3>
+    <h3 *ngIf="!isNew">Modifier une catégorie</h3>
+
+    <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()" *ngIf="categoryForm" >
+        <mat-form-field>
+            <input matInput formControlName="label" placeholder="Label">
+            <mat-error *ngIf="categoryForm.controls['label'].hasError('required')">
+                Veuillez mentionner le label de la catégorie
+            </mat-error>
+            <mat-error *ngIf="categoryForm.controls['label'].hasError('minlength')">
+                Le champ doit avoir 5 caractéres
+            </mat-error>
+            <mat-error *ngIf="categoryForm.controls['label'].hasError('maxlength')">
+                La champ ne peut pas dépasser 50 caractéres
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput formControlName="description" placeholder="description">
+            <mat-error *ngIf="categoryForm.controls['description'].hasError('required')">
+                Veuillez mentionner le label de la catégorie
+            </mat-error>
+            <mat-error *ngIf="categoryForm.controls['description'].hasError('minlength')">
+                Le champ doit avoir 5 caractéres
+            </mat-error>
+            <mat-error *ngIf="categoryForm.controls['description'].hasError('maxlength')">
+                La champ ne peut pas dépasser 255 caractéres
+            </mat-error>
+        </mat-form-field>
+
+        <button mat-flat-button color="primary" [disabled]="!categoryForm.valid">
+            Valider
+        </button>
+        <a mat-flat-button routerLink="/category/list">
+            Annuler
+        </a>
+    </form>
+
+</div>

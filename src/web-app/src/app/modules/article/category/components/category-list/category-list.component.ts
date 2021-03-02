@@ -6,8 +6,11 @@ import {Store} from '@ngrx/store';
 import {AppState} from '../../../../../app-state';
 import {List} from 'immutable';
 import {selectCategories} from '../../store';
-import {loadCategories} from '../../store/actions/category.actions';
+import {deleteCategory, loadCategories} from '../../store/actions/category.actions';
 import {Observable} from 'rxjs';
+import {CategoryDeleteConfirmDialogComponent} from '../category-delete-confirm-dialog/category-delete-confirm-dialog.component';
+import {MatDialog} from '@angular/material/dialog';
+import {filter} from 'rxjs/operators';
 
 @Component({
     selector: 'app-category-list',
@@ -21,12 +24,14 @@ export class CategoryListComponent implements OnInit {
     dataSource: MatTableDataSource<Category>;
     readonly displayedColumns: string[] = [
         'id',
-        'label'
+        'label',
+        'actions'
     ];
 
     categories$: Observable<List<Category>> = this.store.select(selectCategories);
 
-    constructor(private readonly store: Store<AppState>) {
+    constructor(private readonly store: Store<AppState>,
+                private readonly dialog: MatDialog) {
         this.dataSource = new MatTableDataSource<Category>();
     }
 
@@ -39,6 +44,15 @@ export class CategoryListComponent implements OnInit {
     selectCategory(id: number): void {
     }
 
-    deleteVehicle(id: number): void {
+    deleteCategory(id: number): void {
+        this.dialog.open(CategoryDeleteConfirmDialogComponent, {
+            width: '400px',
+            autoFocus: false,
+            data: id
+        }).afterClosed().pipe(
+            filter(Boolean)
+        ).subscribe(() => {
+            this.store.dispatch(deleteCategory({id}));
+        });
     }
 }

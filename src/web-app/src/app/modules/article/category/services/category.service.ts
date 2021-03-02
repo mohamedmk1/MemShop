@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {ApiPathService} from '../../../../shared/services/api-path.service';
 import {Category} from '../models/category.model';
 import {Observable} from 'rxjs';
@@ -25,13 +25,13 @@ export class CategoryService {
     }
 
     createCategory(category: Category): Observable<Category> {
-        return this.http.post<Category>(`${this.apiPathService.getCategoryPath()}`, JSON.stringify(category)).pipe(
+        return this.http.post<Category>(`${this.apiPathService.getCategoryPath()}`, category).pipe(
             map(createdCategory => Category.fromJson(createdCategory))
         );
     }
 
     updateCategory(category: Category): Observable<Category> {
-        return this.http.put<Category>(`${this.apiPathService.getCategoryPath()}/${category.id}`, JSON.stringify(category)).pipe(
+        return this.http.put<Category>(`${this.apiPathService.getCategoryPath()}/${category.id}`, category).pipe(
             map(updatedCategory => Category.fromJson(updatedCategory))
         );
     }
