@@ -28,3 +28,6 @@ const selectCoreState = createFeatureSelector<CoreState>(AppStateFeatures.Core);
 /** Router */
 export const selectRouterParams = createSelector(selectCoreState,
     (state) => state.router && state.router.state.params);
+
+export const selectRouterFeature = createSelector(selectCoreState,
+    (state) => state.router && state.router.state.feature);

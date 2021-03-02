@@ -20,8 +20,8 @@
     <!-- Sidebar Menu -->
     <nav class="mt-2">
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-        <li class="nav-item menu-open">
-          <a href="pages/widgets.html" class="nav-link">
+        <li class="nav-item" [ngClass]="{'menu-open': dashboardMenuSelected}">
+          <a class="nav-link" [routerLink]="'/dashboard'">
             <i class="nav-icon fas fa-tachometer-alt"></i>
             <p>
               Dashboard
@@ -30,7 +30,7 @@
         </li>
 
         <li class="nav-item">
-          <a href="pages/widgets.html" class="nav-link">
+          <a href="#" class="nav-link">
             <i class="nav-icon fas fa-id-card"></i>
             <p>
               Clients
@@ -39,7 +39,7 @@
         </li>
 
         <li class="nav-item">
-          <a href="pages/widgets.html" class="nav-link">
+          <a href="#" class="nav-link">
             <i class="nav-icon fas fa-people-carry"></i>
             <p>
               Fournisseurs
@@ -47,8 +47,8 @@
           </a>
         </li>
 
-        <li class="nav-item menu-open">
-          <a href="#" class="nav-link active">
+        <li class="nav-item" [ngClass]="{'menu-open': articlesMenuSelected}">
+          <a href="#" class="nav-link" [ngClass]="{'active': articlesMenuSelected}">
             <i class="nav-icon fas fa-file"></i>
             <p>
               Articles
@@ -57,13 +57,13 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="./index.html" class="nav-link active">
+              <a [routerLink]="'/category'" class="nav-link" [ngClass]="{'active': categorySubMenuSelected}">
                 <i class="fas fa-cogs nav-icon"></i>
                 <p>Categories</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="./index2.html" class="nav-link">
+              <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-th"></i>
                 <p>Produits</p>
               </a>
@@ -72,7 +72,7 @@
         </li>
 
         <li class="nav-item">
-          <a href="pages/widgets.html" class="nav-link">
+          <a href="#" class="nav-link">
             <i class="nav-icon fas fa-clipboard"></i>
             <p>
               Commandes

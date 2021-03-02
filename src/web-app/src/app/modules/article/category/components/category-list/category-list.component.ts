@@ -41,9 +41,6 @@ export class CategoryListComponent implements OnInit {
             .subscribe(categories => this.dataSource.data = categories.toArray());
     }
 
-    selectCategory(id: number): void {
-    }
-
     deleteCategory(id: number): void {
         this.dialog.open(CategoryDeleteConfirmDialogComponent, {
             width: '400px',
