@@ -111,7 +111,13 @@ namespace MemShop.API.Controllers
 
             _categoryInfoRepository.Save();
 
-            return NoContent();
+            var updatedCategoryToReturn = _mapper
+                .Map<Models.CategoryDto>(categoryEntity);
+
+            return CreatedAtRoute(
+                "GetCategory",
+                new { id = categoryId },
+                updatedCategoryToReturn);
         }
 
         [HttpPatch("{categoryId}")]
