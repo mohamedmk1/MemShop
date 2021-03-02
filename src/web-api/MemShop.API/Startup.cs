@@ -29,6 +29,7 @@ namespace MemShop.API
                 .AddNewtonsoftJson();
 
             var connectionString = _configuration.GetSection("ConnectionStrings:MemShopDBConnectionString").Value;
+            
             services.AddDbContext<CategoryInfoContext>(o => 
             {
                 o.UseSqlServer(connectionString);
@@ -40,9 +41,13 @@ namespace MemShop.API
                 options.AddDefaultPolicy(
                 builder =>
                 {
-                    builder.WithOrigins("http://localhost:4200");
+                    builder
+                        .WithOrigins("http://localhost:4200")
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
                 });
             });
+
 
             services.AddScoped<ICategoryInfoRepository, CategoryInfoRepository>();
 
