@@ -25,38 +25,38 @@ export class RouterPaths {
   static ARTICLES = {
     BASE: {
       label: 'Articles',
-      path: '/products',
+      path: 'product',
     },
     CATEGORY: {
       label: 'Catégories',
-      path: '/categories',
+      path: 'category',
     },
     CATEGORY_ADD: {
       label: 'Ajouter une catégorie',
-      path: '/categories/add',
+      path: 'category/add',
     },
     CATEGORY_EDIT: {
       label: 'Modifier une catégorie',
-      path: '/categories/edit/:id',
+      path: 'category/edit/:id',
     },
     PRODUCT: {
       label: 'Produits',
-      path: '/products',
+      path: '/products'
     },
     PRODUCT_ADD: {
       label: 'Ajouter un produit',
-      path: '/products/add',
+      path: '/products/add'
     },
     PRODUCT_EDIT: {
       label: 'Modifier un produit',
-      path: '/products/edit/:id',
+      path: '/products/edit/:id'
     }
   };
 
   static ORDERS = {
     BASE: {
       label: 'Bons de commande',
-      path: '/orders',
+      path: '/orders'
     },
     ORDER_ADD: {
       label: 'Créer un nouveau bon de commande',
@@ -64,9 +64,11 @@ export class RouterPaths {
     },
     ORDER_EDIT: {
       label: 'Modifier un bon de commande',
-      path: '/orders/edit/:id',
+      path: '/orders/edit/:id'
     }
   };
 
   static PATHMATCH = 'full';
+
+  static WILDCARD = '**';
 }

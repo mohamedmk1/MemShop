@@ -30,10 +30,25 @@ namespace MemShop.API
                 .AddNewtonsoftJson();
 
             var connectionString = _configuration.GetSection("ConnectionStrings:MemShopDBConnectionString").Value;
+            
             services.AddDbContext<CategoryInfoContext>(o => 
             {
                 o.UseSqlServer(connectionString);
             });
+
+            services.AddCors(options =>
+            {
+               
+                options.AddDefaultPolicy(
+                builder =>
+                {
+                    builder
+                        .WithOrigins("http://localhost:4200")
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                });
+            });
+
 
             services.AddScoped<ICategoryInfoRepository, CategoryInfoRepository>();
 
@@ -62,6 +77,8 @@ namespace MemShop.API
             app.UseStatusCodePages();
 
             app.UseRouting();
+
+            app.UseCors();
 
             app.UseEndpoints(endpoints =>
             {

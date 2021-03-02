@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>Suppression d'une catégorie</h1>
+<div mat-dialog-content>
+    <p>Êtes-vous sur de vouloir supprimer la catégorie <strong>{{ category.id }}</strong> ?</p>
+</div>
+<div mat-dialog-actions>
+    <button mat-button mat-dialog-close>Annuler</button>
+    <button [mat-dialog-close]="category" mat-button color="primary" >Valider</button>
+</div>
