@@ -26,5 +26,8 @@ namespace MemShop.API.Entities
         [ForeignKey("CategoryId")]
         public Category Category { get; set; }
         public int CategoryId { get; set; }
+        [ForeignKey("ProviderId")]
+        public Provider Provider { get; set; }
+        public int ProviderId { get; set; }
     }
 }
