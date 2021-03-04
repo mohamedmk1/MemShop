@@ -38,7 +38,9 @@ export class CategoryListComponent implements OnInit {
     ngOnInit(): void {
         this.store.dispatch(loadCategories());
         this.categories$
-            .subscribe(categories => this.dataSource.data = categories.toArray());
+            .subscribe(categories => {
+                this.dataSource.data = categories.toArray();
+            });
     }
 
     deleteCategory(id: number): void {
