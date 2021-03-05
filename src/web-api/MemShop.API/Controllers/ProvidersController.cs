@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace MemShop.API.Controllers
 {
     [ApiController]
-    [Route("api/provider")]
+    [Route("api/providers")]
     public class ProvidersController : ControllerBase
     {
         private readonly IProviderRepository _providerRepository;
@@ -34,6 +34,19 @@ namespace MemShop.API.Controllers
             return Ok(_mapper.Map<IEnumerable<ProviderDto>>(providerEntities));
         }
 
+        [HttpGet("{id}", Name = "GetProvider")]
+        public IActionResult GetProvider(int id)
+        {
+            var provider = _providerRepository.GetProvider(id);
+
+            if (provider == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(_mapper.Map<ProviderDto>(provider));
+        }
+
         [HttpPost()]
         public IActionResult CreateProvider([FromBody] ProviderDtoForCreation payload)
         {
@@ -47,7 +60,7 @@ namespace MemShop.API.Controllers
                 .Map<Models.ProviderDto>(finalProvider);
 
             return CreatedAtRoute(
-                "GetCategory",
+                "GetProvider",
                 new { id = finalProvider.Id },
                 createdProviderToReturn);
 
@@ -75,7 +88,7 @@ namespace MemShop.API.Controllers
                 .Map<Models.ProviderDto>(providerEntity);
 
             return CreatedAtRoute(
-                "GetCategory",
+                "GetProvider",
                 new { id = providerId },
                 updatedProviderToReturn);
         }
