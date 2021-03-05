@@ -10,7 +10,8 @@ namespace MemShop.API.Profiles
     {
         public ProviderProfile()
         {
-            CreateMap<Entities.Provider, Models.ProviderDto>()
+            CreateMap<Entities.Provider, Models.ProviderDto>();
+            CreateMap<Entities.Provider, Models.ProviderDtoForCreation>()
                 .ReverseMap();
         }
         
