@@ -84,6 +84,9 @@ namespace MemShop.API.Migrations
                     b.Property<double>("Price")
                         .HasColumnType("float");
 
+                    b.Property<int>("ProviderId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Reference")
                         .IsRequired()
                         .HasColumnType("nvarchar(10)")
@@ -92,6 +95,8 @@ namespace MemShop.API.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
+
+                    b.HasIndex("ProviderId");
 
                     b.ToTable("Products");
 
@@ -104,6 +109,7 @@ namespace MemShop.API.Migrations
                             Image = "image01.png",
                             Label = "Product 1",
                             Price = 13.449999999999999,
+                            ProviderId = 1,
                             Reference = "ref01"
                         },
                         new
@@ -114,6 +120,7 @@ namespace MemShop.API.Migrations
                             Image = "image02.png",
                             Label = "Product 2",
                             Price = 18.550000000000001,
+                            ProviderId = 2,
                             Reference = "ref02"
                         },
                         new
@@ -124,6 +131,7 @@ namespace MemShop.API.Migrations
                             Image = "image03.png",
                             Label = "Product 3",
                             Price = 20.254999999999999,
+                            ProviderId = 1,
                             Reference = "ref03"
                         },
                         new
@@ -134,6 +142,7 @@ namespace MemShop.API.Migrations
                             Image = "image04.png",
                             Label = "Product 4",
                             Price = 16.25,
+                            ProviderId = 2,
                             Reference = "ref04"
                         },
                         new
@@ -144,7 +153,58 @@ namespace MemShop.API.Migrations
                             Image = "image05.png",
                             Label = "Product 5",
                             Price = 25.649999999999999,
+                            ProviderId = 1,
                             Reference = "ref05"
+                        });
+                });
+
+            modelBuilder.Entity("MemShop.API.Entities.Provider", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(120)")
+                        .HasMaxLength(120);
+
+                    b.Property<string>("Country")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("ZipCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(5)")
+                        .HasMaxLength(5);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Providers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Address = "29 Rue des sablons",
+                            Country = "France",
+                            Name = "Provider 1",
+                            ZipCode = "75016"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Address = "606 rue Cathcart",
+                            Country = "Canada",
+                            Name = "Provider 2",
+                            ZipCode = "66666"
                         });
                 });
 
@@ -153,6 +213,12 @@ namespace MemShop.API.Migrations
                     b.HasOne("MemShop.API.Entities.Category", "Category")
                         .WithMany("Products")
                         .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MemShop.API.Entities.Provider", "Provider")
+                        .WithMany("Products")
+                        .HasForeignKey("ProviderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
