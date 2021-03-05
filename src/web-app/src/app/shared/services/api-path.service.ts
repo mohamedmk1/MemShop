@@ -22,4 +22,8 @@ export class ApiPathService {
     return `${this.getMemShopEndPointUrl()}/${ApiPathConstants.PRODUCT}`;
   }
 
+  getProviderPath(): string {
+    return `${this.getMemShopEndPointUrl()}/${ApiPathConstants.PROVIDER}`;
+  }
+
 }
