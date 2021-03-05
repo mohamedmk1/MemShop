@@ -30,7 +30,7 @@ namespace MemShop.API
                 .AddNewtonsoftJson();
 
             var connectionString = _configuration.GetSection("ConnectionStrings:MemShopDBConnectionString").Value;
-            
+
             services.AddDbContext<CategoryInfoContext>(o => 
             {
                 o.UseSqlServer(connectionString);
@@ -49,7 +49,7 @@ namespace MemShop.API
                 });
             });
 
-
+            services.AddScoped<IProviderRepository, ProviderRepository>();
             services.AddScoped<ICategoryInfoRepository, CategoryInfoRepository>();
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
