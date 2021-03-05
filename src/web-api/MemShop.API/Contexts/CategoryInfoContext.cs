@@ -11,12 +11,33 @@ namespace MemShop.API.Contexts
     {
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<Provider> Providers { get; set; }
+
         public CategoryInfoContext(DbContextOptions<CategoryInfoContext> options): base(options)
         {
             // Database.EnsureCreated();
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Provider>()
+               .HasData(
+                   new Provider()
+                   {
+                       Id = 1,
+                       Name = "Provider 1",
+                       Address = "29 Rue des sablons",
+                       ZipCode = "75016",
+                       Country = "France"
+                   },
+                   new Provider()
+                   {
+                       Id = 2,
+                       Name = "Provider 2",
+                       Address = "606 rue Cathcart",
+                       ZipCode = "66666",
+                       Country = "Canada"
+                   }
+               );
             modelBuilder.Entity<Category>()
                 .HasData(
                     new Category()
@@ -49,7 +70,8 @@ namespace MemShop.API.Contexts
                         Label = "Product 1",
                         Price = 13.45,
                         Image = "image01.png",
-                        Description = "desc1"
+                        Description = "desc1",
+                        ProviderId = 1
                     },
                     new Product()
                     {
@@ -59,7 +81,8 @@ namespace MemShop.API.Contexts
                         Label = "Product 2",
                         Price = 18.55,
                         Image = "image02.png",
-                        Description = "desc2"
+                        Description = "desc2",
+                        ProviderId = 2
                     },
                     new Product()
                     {
@@ -69,7 +92,8 @@ namespace MemShop.API.Contexts
                         Label = "Product 3",
                         Price = 20.255,
                         Image = "image03.png",
-                        Description = "desc3"
+                        Description = "desc3",
+                        ProviderId = 1
                     },
                     new Product()
                     {
@@ -79,7 +103,8 @@ namespace MemShop.API.Contexts
                         Label = "Product 4",
                         Price = 16.25,
                         Image = "image04.png",
-                        Description = "desc4"
+                        Description = "desc4",
+                        ProviderId = 2
                     },
                     new Product()
                     {
@@ -89,7 +114,8 @@ namespace MemShop.API.Contexts
                         Label = "Product 5",
                         Price = 25.65,
                         Image = "image05.png",
-                        Description = "desc5"
+                        Description = "desc5",
+                        ProviderId = 1
                     }
                  );
 

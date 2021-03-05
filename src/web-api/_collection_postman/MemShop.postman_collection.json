@@ -134,6 +134,27 @@
 						"method": "GET",
 						"header": [],
 						"url": {
+							"raw": "http://localhost:5420/api/categories/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5420",
+							"path": [
+								"api",
+								"categories",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
 							"raw": "http://localhost:5420/api/categories",
 							"protocol": "http",
 							"host": [
@@ -143,6 +164,142 @@
 							"path": [
 								"api",
 								"categories"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Provider",
+			"item": [
+				{
+					"name": "Create provider",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Provider 3\",\r\n    \"address\": \"606 rue Cathcart\",\r\n    \"zipCode\": \"33333\",\r\n    \"country\": \"Algérie\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5420/api/providers/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5420",
+							"path": [
+								"api",
+								"providers",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update provider",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"updated Provider 2\",\r\n    \"address\": \"606 rue Cathcart\",\r\n    \"zipCode\": \"33333\",\r\n    \"country\": \"Algérie\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5420/api/providers/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5420",
+							"path": [
+								"api",
+								"providers",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete provider",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5420/api/providers/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5420",
+							"path": [
+								"api",
+								"providers",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Providers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5420/api/providers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5420",
+							"path": [
+								"api",
+								"providers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Provider",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5420/api/providers/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5420",
+							"path": [
+								"api",
+								"providers",
+								"2"
 							]
 						}
 					},
