@@ -1,0 +1,57 @@
+<div class="provider-form-container mat-elevation-z8" >
+    <h3 *ngIf="isNew">Ajouter un nouveau fournisseur</h3>
+    <h3 *ngIf="!isNew">Modifier un fournisseur</h3>
+
+    <form [formGroup]="providerForm" (ngSubmit)="onSubmit()" *ngIf="providerForm" >
+        <mat-form-field>
+            <input matInput formControlName="name" placeholder="nom">
+            <mat-error *ngIf="providerForm.controls['name'].hasError('required')">
+                Veuillez mentionner le nom
+            </mat-error>
+            <mat-error *ngIf="providerForm.controls['name'].hasError('minlength')">
+                Le champ doit avoir 5 caractéres
+            </mat-error>
+            <mat-error *ngIf="providerForm.controls['name'].hasError('maxlength')">
+                La champ ne peut pas dépasser 50 caractéres
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput formControlName="address" placeholder="adresse">
+            <mat-error *ngIf="providerForm.controls['address'].hasError('required')">
+                Veuillez mentionner l'adresse
+            </mat-error>
+            <mat-error *ngIf="providerForm.controls['address'].hasError('maxlength')">
+                La champ ne peut pas dépasser 120 caractéres
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput formControlName="zipCode" placeholder="code postal">
+            <mat-error *ngIf="providerForm.controls['zipCode'].hasError('required')">
+                Veuillez mentionner l'adresse
+            </mat-error>
+            <mat-error *ngIf="providerForm.controls['zipCode'].hasError('maxlength')">
+                La champ ne peut pas dépasser 5 caractéres
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput formControlName="country" placeholder="pays">
+            <mat-error *ngIf="providerForm.controls['country'].hasError('required')">
+                Veuillez mentionner l'adresse
+            </mat-error>
+            <mat-error *ngIf="providerForm.controls['country'].hasError('maxlength')">
+                La champ ne peut pas dépasser 50 caractéres
+            </mat-error>
+        </mat-form-field>
+
+        <button mat-flat-button color="primary" [disabled]="!providerForm.valid">
+            Valider
+        </button>
+        <a mat-flat-button routerLink="/category/list">
+            Annuler
+        </a>
+    </form>
+
+</div>

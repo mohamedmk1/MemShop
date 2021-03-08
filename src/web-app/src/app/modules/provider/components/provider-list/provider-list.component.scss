@@ -1,0 +1,18 @@
+.provider-list-container {
+    padding: 20px;
+
+    table {
+        width: 100%;
+    }
+
+    .mat-column-actions {
+        text-align: right;
+        justify-content: flex-end;
+
+        .button-delete {
+            color: hsl(360, 77%, 61%);
+            cursor: pointer;
+        }
+    }
+}
+

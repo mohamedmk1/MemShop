@@ -1,0 +1,50 @@
+<div class="provider-list-container">
+
+    <h3>Liste des fournisseurs</h3>
+
+    <mat-table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+        <div fxLayout="row">
+            <ng-container matColumnDef="id">
+                <mat-header-cell *matHeaderCellDef>Id</mat-header-cell>
+                <mat-cell *matCellDef="let provider"> {{provider.id}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="name">
+                <mat-header-cell *matHeaderCellDef>Label</mat-header-cell>
+                <mat-cell *matCellDef="let provider"> {{provider.name}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="address">
+                <mat-header-cell *matHeaderCellDef>Label</mat-header-cell>
+                <mat-cell *matCellDef="let provider">
+                    {{provider.address}} - {{provider.zipCode}} - {{provider.country}}
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="actions">
+                <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
+                <mat-cell *matCellDef="let provider" fxLayout="row" fxLayoutGap="10px">
+                    <a mat-icon-button [routerLink]="'/provider/edit/' + provider.id" class="button-edit">
+                        <mat-icon>edit</mat-icon>
+                    </a>
+                    <a mat-icon-button (click)="deleteProvider(provider.id)" class="button-delete">
+                        <mat-icon>delete</mat-icon>
+                    </a>
+                </mat-cell>
+            </ng-container>
+        </div>
+
+        <ng-container matColumnDef="addProviderColumn">
+            <mat-footer-cell *matFooterCellDef>
+                <a mat-flat-button color="primary" [routerLink]="'/provider/edit/new'" class="button-add">
+                    Ajouter un nouveau fournisseur
+                </a>
+            </mat-footer-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-footer-row *matFooterRowDef="['addProviderColumn']"></mat-footer-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+</div>
