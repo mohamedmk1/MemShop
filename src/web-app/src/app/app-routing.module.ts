@@ -4,6 +4,10 @@ import {NgModule} from '@angular/core';
 
 export const routes: Routes = [
   {
+    loadChildren: () => import('./modules/provider/provider.module').then((m) => m.ProviderModule),
+    path: RouterPaths.PROVIDERS.BASE.path,
+  },
+  {
     loadChildren: () => import('./modules/article/category/category.module').then((m) => m.CategoryModule),
     path: RouterPaths.ARTICLES.CATEGORY.path,
   },

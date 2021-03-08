@@ -7,10 +7,10 @@ export class RouterPaths {
     },
   };
 
-  static SUPPLIERS = {
+  static PROVIDERS = {
     BASE: {
       label: 'Fournisseur',
-      path: '/suppliers',
+      path: 'provider',
     },
     SUPPLIER_ADD: {
       label: 'Ajouter un fournisseur',
