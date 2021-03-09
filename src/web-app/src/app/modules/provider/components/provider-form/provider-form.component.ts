@@ -4,7 +4,7 @@ import {first, tap} from 'rxjs/operators';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Store} from '@ngrx/store';
 import {AppState} from '../../../../app-state';
-import {loadProviderById} from '../../store/actions/provider.actions';
+import {addProvider, loadProviderById, updateProvider} from '../../store/actions/provider.actions';
 import {selectSelectedProvider} from '../../store';
 import {ProviderModel} from '../../models/provider.model';
 
@@ -72,6 +72,18 @@ export class ProviderFormComponent implements OnInit {
     }
 
     onSubmit(): void {
+        if (this.providerForm.valid) {
+            if (this.isNew) {
+               this.store.dispatch(addProvider({provider: this.providerForm.value}));
+            }
+            else {
+                const providerPayload: ProviderModel = {
+                    ...this.providerForm.value,
+                    id: this.id
+                };
 
+                this.store.dispatch(updateProvider({provider: providerPayload}));
+            }
+        }
     }
 }

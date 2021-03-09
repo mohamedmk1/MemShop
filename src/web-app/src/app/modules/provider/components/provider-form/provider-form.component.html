@@ -4,7 +4,7 @@
 
     <form [formGroup]="providerForm" (ngSubmit)="onSubmit()" *ngIf="providerForm" >
         <mat-form-field>
-            <input matInput formControlName="name" placeholder="nom">
+            <input matInput formControlName="name" placeholder="Nom">
             <mat-error *ngIf="providerForm.controls['name'].hasError('required')">
                 Veuillez mentionner le nom
             </mat-error>
@@ -17,7 +17,7 @@
         </mat-form-field>
 
         <mat-form-field>
-            <input matInput formControlName="address" placeholder="adresse">
+            <input matInput formControlName="address" placeholder="Adresse">
             <mat-error *ngIf="providerForm.controls['address'].hasError('required')">
                 Veuillez mentionner l'adresse
             </mat-error>
@@ -27,7 +27,7 @@
         </mat-form-field>
 
         <mat-form-field>
-            <input matInput formControlName="zipCode" placeholder="code postal">
+            <input matInput formControlName="zipCode" placeholder="Code postal">
             <mat-error *ngIf="providerForm.controls['zipCode'].hasError('required')">
                 Veuillez mentionner l'adresse
             </mat-error>
@@ -37,7 +37,7 @@
         </mat-form-field>
 
         <mat-form-field>
-            <input matInput formControlName="country" placeholder="pays">
+            <input matInput formControlName="country" placeholder="Pays">
             <mat-error *ngIf="providerForm.controls['country'].hasError('required')">
                 Veuillez mentionner l'adresse
             </mat-error>

@@ -3,21 +3,26 @@ import {Actions, createEffect, ofType} from '@ngrx/effects';
 import {Router} from '@angular/router';
 import {ProviderService} from '../../services/provider.service';
 import {
-    addProvider, addProviderFailed, addProviderSuccess, deleteProvider,
-    loadProviderById, loadProviderByIdFailed,
+    addProvider,
+    addProviderFailed,
+    addProviderSuccess,
+    clearSelectedProvider,
+    deleteProvider,
+    deleteProviderFailed,
+    deleteProviderSuccess,
+    loadProviderById,
+    loadProviderByIdFailed,
     loadProviderByIdSuccess,
     loadProviders,
     loadProvidersFailed,
-    loadProvidersSuccess, setSelectedProvider, updateProvider, updateProviderFailed, updateProviderSuccess
+    loadProvidersSuccess,
+    setSelectedProvider,
+    updateProvider,
+    updateProviderFailed,
+    updateProviderSuccess
 } from '../actions/provider.actions';
-import {catchError, map, switchMap} from 'rxjs/operators';
+import {catchError, map, switchMap, tap} from 'rxjs/operators';
 import {of} from 'rxjs';
-import {
-    addCategory, addCategoryFailed, addCategorySuccess, deleteCategory, deleteCategoryFailed, deleteCategorySuccess,
-    loadCategoryById,
-    loadCategoryByIdFailed,
-    loadCategoryByIdSuccess, setSelectedCategory, updateCategory, updateCategoryFailed, updateCategorySuccess
-} from '../../../article/category/store/actions/category.actions';
 
 
 @Injectable()
@@ -78,10 +83,24 @@ export class ProviderEffects {
         ofType(deleteProvider),
         switchMap((action) =>
             this.providerService.deleteProvider(action.id).pipe(
-                map(() => deleteCategorySuccess({id: action.id})),
-                catchError((errorResponse) => of(deleteCategoryFailed(errorResponse)))
+                map(() => deleteProviderSuccess({id: action.id})),
+                catchError((errorResponse) => of(deleteProviderFailed(errorResponse)))
             )
         )
         )
     );
+
+    onProviderEditAddSuccess$ = createEffect(
+        () =>
+            this.actions$.pipe(
+                ofType(addProviderSuccess, updateProviderSuccess),
+                tap(() => this.router.navigate(['/provider/list']))
+            ),
+        { dispatch: false }
+    );
+
+    onProvidersListSuccess$ = createEffect(() => this.actions$.pipe(
+        ofType(loadProvidersSuccess),
+        switchMap(() => of(clearSelectedProvider()))
+    ));
 }
