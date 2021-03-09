@@ -11,9 +11,10 @@ import {ProviderEffects} from './store/effects/provider.effects';
 import {ProviderRoutingModule} from './provider.routing.module';
 import { ProviderFormComponent } from './components/provider-form/provider-form.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import { ProviderDeleteConfirmDialogComponent } from './components/provider-delete-confirm-dialog/provider-delete-confirm-dialog.component';
 
 @NgModule({
-    declarations: [ProviderPageComponent, ProviderListComponent, ProviderFormComponent],
+    declarations: [ProviderPageComponent, ProviderListComponent, ProviderFormComponent, ProviderDeleteConfirmDialogComponent],
     imports: [
         CommonModule,
         ProviderRoutingModule,

@@ -7,7 +7,11 @@ import {List} from 'immutable';
 import {Store} from '@ngrx/store';
 import {AppState} from '../../../../app-state';
 import {selectProviders} from '../../store';
-import {loadProviders} from '../../store/actions/provider.actions';
+import {deleteProvider, loadProviders} from '../../store/actions/provider.actions';
+import {CategoryDeleteConfirmDialogComponent} from '../../../article/category/components/category-delete-confirm-dialog/category-delete-confirm-dialog.component';
+import {filter} from 'rxjs/operators';
+import {ProviderDeleteConfirmDialogComponent} from '../provider-delete-confirm-dialog/provider-delete-confirm-dialog.component';
+import {MatDialog} from '@angular/material/dialog';
 
 @Component({
     selector: 'app-provider-list',
@@ -26,7 +30,8 @@ export class ProviderListComponent implements OnInit {
 
     providers$: Observable<List<ProviderModel>> = this.store.select(selectProviders);
 
-    constructor(private readonly store: Store<AppState>) {
+    constructor(private readonly store: Store<AppState>,
+                private readonly dialog: MatDialog) {
         this.dataSource = new MatTableDataSource<ProviderModel>();
     }
 
@@ -37,6 +42,14 @@ export class ProviderListComponent implements OnInit {
     }
 
     deleteProvider(id: number): void {
-
+        this.dialog.open(ProviderDeleteConfirmDialogComponent, {
+            width: '400px',
+            autoFocus: false,
+            data: id
+        }).afterClosed().pipe(
+            filter(Boolean)
+        ).subscribe(() => {
+            this.store.dispatch(deleteProvider({id}));
+        });
     }
 }
