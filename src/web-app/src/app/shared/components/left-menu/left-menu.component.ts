@@ -6,39 +6,43 @@ import {ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChan
     styleUrls: ['./left-menu.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class LeftMenuComponent implements OnInit, OnChanges {
-
+export class LeftMenuComponent implements OnChanges {
     @Input() feature: string;
 
-    dashboardMenuSelected = false;
-    articlesMenuSelected = false;
-    categorySubMenuSelected = false;
+    dashboardMenuSelected: boolean;
+    articlesMenuSelected: boolean;
+    categorySubMenuSelected: boolean;
+    providerMenuSelected: boolean;
 
-    constructor() { }
-
-    ngOnInit(): void {
-
-    }
+    constructor() { this.initMenu(); }
 
     ngOnChanges(changes: SimpleChanges): void {
         if (!!changes.feature) {
             switch (this.feature) {
                 case 'Category': {
+                    this.initMenu();
                     this.articlesMenuSelected = true;
                     this.categorySubMenuSelected = true;
-                    this.dashboardMenuSelected = false;
+                    break;
+                }
+                case 'Provider': {
+                    this.initMenu();
+                    this.providerMenuSelected = true;
                     break;
                 }
                 default: {
+                    this.initMenu();
                     this.dashboardMenuSelected = true;
-                    this.articlesMenuSelected = false;
-                    this.categorySubMenuSelected = false;
                     break;
                 }
             }
         }
     }
 
-
-
+    initMenu(): void {
+        this.dashboardMenuSelected = false;
+        this.articlesMenuSelected = false;
+        this.categorySubMenuSelected = false;
+        this.providerMenuSelected = false;
+    }
 }
