@@ -6,15 +6,20 @@ import {EffectsModule} from '@ngrx/effects';
 import {Store} from '@ngrx/store';
 import {Category} from '../../models/category.model';
 import {List} from 'immutable';
-import {loadCategories} from '../../store/actions/category.actions';
+import {deleteCategory, loadCategories} from '../../store/actions/category.actions';
 import {MockStore, provideMockStore} from '@ngrx/store/testing';
 import {AppState, getInitialAppState} from '../../../../../app-state';
 import {SharedModule} from '../../../../../shared/shared.module';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatDialog} from '@angular/material/dialog';
+import {MatDialogMock} from '../../../../../shared/mocks/mat-dialog.mock';
+import {of} from 'rxjs';
 
 describe('CategoryListComponent', () => {
     let component: CategoryListComponent;
     let fixture: ComponentFixture<CategoryListComponent>;
     let store: MockStore<AppState>;
+    let dialog: MatDialog;
 
     const category1 = Category
         .newBuilder()
@@ -27,9 +32,13 @@ describe('CategoryListComponent', () => {
             imports: [
                 SharedModule,
                 EffectsModule.forRoot([]),
-                RouterTestingModule.withRoutes([])
+                RouterTestingModule.withRoutes([]),
+                BrowserAnimationsModule
             ],
-            providers: [provideMockStore({ initialState: getInitialAppState() })],
+            providers: [
+                provideMockStore({ initialState: getInitialAppState() }),
+                { provide: MatDialog, useClass: MatDialogMock }
+            ],
             declarations: [ CategoryListComponent ]
         })
         .compileComponents();
@@ -37,6 +46,7 @@ describe('CategoryListComponent', () => {
 
     beforeEach(() => {
         store = TestBed.inject(Store) as MockStore<AppState>;
+        dialog = TestBed.inject(MatDialog);
         fixture = TestBed.createComponent(CategoryListComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
@@ -85,6 +95,37 @@ describe('CategoryListComponent', () => {
 
             // Assert
             expect(component.dataSource.data).toEqual([category1]);
+        });
+    });
+
+    describe('deleteCategory()', () => {
+        it('should not dispatch deleteCategory action when id is null', () => {
+            // Arrange
+            const dispatchSpy = jest.spyOn(store, 'dispatch');
+            const id = null;
+            spyOn(dialog, 'open')
+                .and
+                .returnValue({afterClosed: () => of(id)});
+            fixture.detectChanges();
+
+            component.deleteCategory(id);
+
+            expect(dispatchSpy).toHaveBeenCalledTimes(0);
+        });
+
+        it('should dispatch deleteCategory action when id exists', () => {
+            // Arrange
+            const dispatchSpy = jest.spyOn(store, 'dispatch');
+            const id = 1;
+            spyOn(dialog, 'open')
+                .and
+                .returnValue({afterClosed: () => of(id)});
+            fixture.detectChanges();
+
+            component.deleteCategory(id);
+
+            expect(dispatchSpy).toHaveBeenCalledTimes(1);
+            expect(dispatchSpy).toHaveBeenCalledWith(deleteCategory({id}));
         });
     });
 });

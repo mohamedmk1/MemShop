@@ -18,9 +18,6 @@ import {filter} from 'rxjs/operators';
     styleUrls: ['./category-list.component.scss']
 })
 export class CategoryListComponent implements OnInit {
-
-    @ViewChild(MatSort) sort: MatSort;
-
     dataSource: MatTableDataSource<Category>;
     readonly displayedColumns: string[] = [
         'id',
