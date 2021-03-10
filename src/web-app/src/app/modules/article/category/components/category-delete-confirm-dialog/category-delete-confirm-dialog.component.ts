@@ -8,11 +8,6 @@ import {Category} from '../../models/category.model';
   styleUrls: ['./category-delete-confirm-dialog.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CategoryDeleteConfirmDialogComponent implements OnInit {
-
+export class CategoryDeleteConfirmDialogComponent {
   constructor(@Inject(MAT_DIALOG_DATA) public category: Category) {}
-
-  ngOnInit(): void {
-  }
-
 }

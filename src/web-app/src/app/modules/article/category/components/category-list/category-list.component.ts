@@ -1,5 +1,4 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import {Category} from '../../models/category.model';
 import {Store} from '@ngrx/store';
@@ -18,9 +17,6 @@ import {filter} from 'rxjs/operators';
     styleUrls: ['./category-list.component.scss']
 })
 export class CategoryListComponent implements OnInit {
-
-    @ViewChild(MatSort) sort: MatSort;
-
     dataSource: MatTableDataSource<Category>;
     readonly displayedColumns: string[] = [
         'id',
@@ -38,7 +34,9 @@ export class CategoryListComponent implements OnInit {
     ngOnInit(): void {
         this.store.dispatch(loadCategories());
         this.categories$
-            .subscribe(categories => this.dataSource.data = categories.toArray());
+            .subscribe(categories => {
+                this.dataSource.data = categories.toArray();
+            });
     }
 
     deleteCategory(id: number): void {
