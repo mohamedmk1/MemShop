@@ -4,7 +4,12 @@ import {AppState} from '../../../../../app-state';
 import {selectRouterParams} from '../../../../../core/store';
 import {first, tap} from 'rxjs/operators';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {addCategory, loadCategoryById, updateCategory} from '../../store/actions/category.actions';
+import {
+    addCategory,
+    clearSelectedCategory,
+    loadCategoryById,
+    updateCategory
+} from '../../store/actions/category.actions';
 import {selectSelectedCategory} from '../../store';
 import {Category} from '../../models/category.model';
 
@@ -49,6 +54,7 @@ export class CategoryFormComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy(): void {
+        this.store.dispatch(clearSelectedCategory());
     }
 
     onSubmit(): void {
@@ -66,7 +72,7 @@ export class CategoryFormComponent implements OnInit, OnDestroy {
         }
     }
 
-    private initForm(category: Category): void {
+    initForm(category: Category): void {
         this.categoryForm = new FormGroup({
             label: new FormControl(category && category.label ? category.label : null, [
                 Validators.required,
