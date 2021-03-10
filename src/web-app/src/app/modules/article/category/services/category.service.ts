@@ -39,5 +39,4 @@ export class CategoryService {
     deleteCategory(id: number): Observable<void> {
         return this.http.delete<void>(`${this.apiPathService.getCategoryPath()}/${id}`);
     }
-
 }

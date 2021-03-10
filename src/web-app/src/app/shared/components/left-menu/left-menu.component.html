@@ -21,7 +21,7 @@
     <nav class="mt-2">
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <li class="nav-item" [ngClass]="{'menu-open': dashboardMenuSelected}">
-          <a class="nav-link" [routerLink]="'/dashboard'">
+          <a class="nav-link" [routerLink]="'/dashboard'" [ngClass]="{'active': dashboardMenuSelected}">
             <i class="nav-icon fas fa-tachometer-alt"></i>
             <p>
               Dashboard
@@ -38,8 +38,8 @@
           </a>
         </li>
 
-        <li class="nav-item">
-          <a href="#" class="nav-link">
+        <li class="nav-item" [ngClass]="{'menu-open': providerMenuSelected}">
+          <a [routerLink]="'/provider'" class="nav-link" [ngClass]="{'active': providerMenuSelected}">
             <i class="nav-icon fas fa-people-carry"></i>
             <p>
               Fournisseurs
