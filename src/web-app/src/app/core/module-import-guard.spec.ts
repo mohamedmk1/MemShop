@@ -1,6 +1,6 @@
-/*
-import { throwIfAlreadyLoaded } from '@core/module-import-guard';
-import { SharedModule } from '@shared/shared.module';
+import {SharedModule} from '../shared/shared.module';
+import {throwIfAlreadyLoaded} from './module-import-guard';
+
 
 describe('throwIfAlreadyLoaded', () => {
   it('should throw an error if a module has already been loaded elsewhere', () => {
@@ -23,4 +23,3 @@ describe('throwIfAlreadyLoaded', () => {
     );
   });
 });
-*/
