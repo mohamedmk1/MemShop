@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30204.135
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MemShop.API", "MemShop.API\MemShop.API.csproj", "{780B9F33-B094-49D7-8DCC-D7BF93E811F6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MemShop.API", "MemShop.API\MemShop.API.csproj", "{780B9F33-B094-49D7-8DCC-D7BF93E811F6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MemShop.Data", "MemShop.Data\MemShop.Data.csproj", "{D846D7AF-F874-4D67-9BD8-E483A2B64CB9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MemShop.Services", "MemShop.Services\MemShop.Services.csproj", "{7EAC3F57-37B7-45B3-9EF4-B0902309A861}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{780B9F33-B094-49D7-8DCC-D7BF93E811F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{780B9F33-B094-49D7-8DCC-D7BF93E811F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{780B9F33-B094-49D7-8DCC-D7BF93E811F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D846D7AF-F874-4D67-9BD8-E483A2B64CB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D846D7AF-F874-4D67-9BD8-E483A2B64CB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D846D7AF-F874-4D67-9BD8-E483A2B64CB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D846D7AF-F874-4D67-9BD8-E483A2B64CB9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7EAC3F57-37B7-45B3-9EF4-B0902309A861}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7EAC3F57-37B7-45B3-9EF4-B0902309A861}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7EAC3F57-37B7-45B3-9EF4-B0902309A861}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7EAC3F57-37B7-45B3-9EF4-B0902309A861}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
