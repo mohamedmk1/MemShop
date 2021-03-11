@@ -9,6 +9,7 @@ namespace MemShop.Services
     {
         Product GetProductById(int id);
         Product CreateProduct(Product product);
+        Product CreateProductForCategory(int categoryId, Product product);
         void UpdateProduct(Product product);
         void DeleteProduct(Product product);
         IEnumerable<Product> GetAllByCategoryId(int categoryId);

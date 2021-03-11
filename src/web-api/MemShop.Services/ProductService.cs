@@ -20,6 +20,17 @@ namespace MemShop.Services
             return product;
         }
 
+        public Product CreateProductForCategory(int categoryId, Product product)
+        {
+            if (_unitOfWork.Categories.DoesExist(categoryId))
+            {
+                _unitOfWork.Products.Add(product);
+                _unitOfWork.Commit();
+                return product;
+            }
+            return null;
+        }
+
         public void DeleteProduct(Product product)
         {
             _unitOfWork.Products.Remove(product);
@@ -27,7 +38,9 @@ namespace MemShop.Services
 
         public IEnumerable<Product> GetAllByCategoryId(int categoryId)
         {
-            return _unitOfWork.Products.GetAllByCategoryId(categoryId);
+           return (_unitOfWork.Categories.DoesExist(categoryId))
+                ? _unitOfWork.Products.GetAllByCategoryId(categoryId)
+                : null;
         }
 
         public Product GetProductById(int id)
@@ -37,8 +50,9 @@ namespace MemShop.Services
 
         public Product GetProductForCategory(int categoryId, int productId)
         {
-            return _unitOfWork.Products
-                .GetProductForCategory(categoryId, productId);
+            return (_unitOfWork.Categories.DoesExist(categoryId))
+                ? _unitOfWork.Products.GetProductForCategory(categoryId, productId)
+                : null;
         }
 
         public void UpdateProduct(Product product)

@@ -9,9 +9,10 @@ namespace MemShop.Services
     {
         Category GetCategoryById(int id);
         Category CreateCategory(Category category);
+        IEnumerable<Category> GetCategories();
         void UpdateCategory(Category category);
         void DeleteCategory(Category category);
-        Category GetByIdWithProducts(int id);
+        Category GetCategoryByIdWithProducts(int id);
         void AddProductForCategory(int categoryId, Product product);
         bool IsCategoryExist(int categoryId);
     }

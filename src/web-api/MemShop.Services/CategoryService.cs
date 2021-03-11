@@ -32,16 +32,22 @@ namespace MemShop.Services
             _unitOfWork.Commit();
         }
 
-        public Category GetByIdWithProducts(int id)
+        public Category GetCategoryByIdWithProducts(int id)
         {
-            return _unitOfWork.Categories.
-                GetByIdWithProducts(id);
+            return _unitOfWork.Categories
+                .GetByIdWithProducts(id);
+        }
+
+        public IEnumerable<Category> GetCategories()
+        {
+            return _unitOfWork.Categories
+                .GetAll();
         }
 
         public Category GetCategoryById(int id)
         {
-            return _unitOfWork.Categories.
-                GetById(id);
+            return _unitOfWork.Categories
+                .GetById(id);
         }
 
         public bool IsCategoryExist(int categoryId)
