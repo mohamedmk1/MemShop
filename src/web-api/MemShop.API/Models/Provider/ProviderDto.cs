@@ -1,10 +1,9 @@
-﻿using MemShop.API.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MemShop.API.Models
+namespace MemShop.API.Models.Provider
 {
     public class ProviderDto
     {
