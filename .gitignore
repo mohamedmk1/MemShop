@@ -17,6 +17,10 @@ src/web-app/yarn.lock
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+# appsetting
+src/web-api/MemShop.API/appsettings.Development.json
+src/web-api/MemShop.API/appsettings.json
+
 # User-specific files
 *.rsuser
 *.suo
