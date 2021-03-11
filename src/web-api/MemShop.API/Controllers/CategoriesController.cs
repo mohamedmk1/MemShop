@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MemShop.API.Models;
-using MemShop.API.Services;
+using MemShop.Data.Entities;
+using MemShop.Services;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -12,14 +13,14 @@ namespace MemShop.API.Controllers
     [Route("api/categories")]
     public class CategoriesController : ControllerBase
     {
-        private readonly ICategoryInfoRepository _categoryInfoRepository;
+        private readonly ICategoryService _categoryService;
         private readonly IMapper _mapper;
 
-        public CategoriesController(ICategoryInfoRepository categoryInfoRepository,
+        public CategoriesController(ICategoryService categoryService,
             IMapper mapper)
         {
-            _categoryInfoRepository = categoryInfoRepository 
-                ?? throw new ArgumentNullException(nameof(categoryInfoRepository));
+            _categoryService = categoryService
+                ?? throw new ArgumentNullException(nameof(categoryService));
             _mapper = mapper
                 ?? throw new ArgumentNullException(nameof(mapper));
         }
@@ -27,7 +28,7 @@ namespace MemShop.API.Controllers
         [HttpGet]
         public IActionResult GetCategories()
         {
-            var categoryEntities = _categoryInfoRepository.GetCategories();
+            var categoryEntities = _categoryService.GetCategories();
 
             return Ok(_mapper.Map<IEnumerable<CategoryWithoutProductsDto>>(categoryEntities));
         }
@@ -35,7 +36,8 @@ namespace MemShop.API.Controllers
         [HttpGet("{id}", Name = "GetCategory")]
         public IActionResult GetCategory(int id, bool includeProducts = false)
         {
-            var category = _categoryInfoRepository.GetCategory(id, includeProducts);
+            var category = (includeProducts) ? _categoryService.GetCategoryByIdWithProducts(id)
+                : _categoryService.GetCategoryById(id);
 
             if (category == null)
             {
@@ -52,8 +54,9 @@ namespace MemShop.API.Controllers
 
         [HttpPost()]
         public IActionResult CreateCategory([FromBody] CategoryForCreationDto payload)
-        {
-            if(payload.Label == payload.Description)
+        { 
+            // In validator or service ?
+            if (payload.Label == payload.Description)
             {
                 ModelState.AddModelError("Description", "Label category must be different from description.");
             }
@@ -64,10 +67,9 @@ namespace MemShop.API.Controllers
             }
 
             var finalCategory = _mapper
-                .Map<Entities.Category>(payload);
+                .Map<Category>(payload);
 
-            _categoryInfoRepository.AddCategory(finalCategory);
-            _categoryInfoRepository.Save();
+            _categoryService.CreateCategory(finalCategory);
 
             var createdCategoryToReturn = _mapper
                 .Map<Models.CategoryDto>(finalCategory);
@@ -80,7 +82,7 @@ namespace MemShop.API.Controllers
         }
 
         [HttpPut("{categoryId}")]
-        public IActionResult UpdateCategory(int categoryId, [FromBody] CategoryForUpdateDto payload) 
+        public IActionResult UpdateCategory(int categoryId, [FromBody] CategoryForUpdateDto payload)
         {
 
             if (payload.Label == payload.Description)
@@ -93,23 +95,16 @@ namespace MemShop.API.Controllers
                 return BadRequest();
             }
 
-            if (!_categoryInfoRepository.IsCategoryExist(categoryId))
-            {
-                return NotFound();
-            }
+            var categoryEntity = _categoryService.GetCategoryById(categoryId);
 
-            var categoryEntity = _categoryInfoRepository.GetCategory(categoryId, false);
-            
-            if(categoryEntity == null)
+            if (categoryEntity == null)
             {
                 return NotFound();
             }
 
             _mapper.Map(payload, categoryEntity);
 
-            _categoryInfoRepository.UpdateCategory(categoryEntity);
-
-            _categoryInfoRepository.Save();
+            _categoryService.UpdateCategory(categoryEntity);
 
             var updatedCategoryToReturn = _mapper
                 .Map<Models.CategoryDto>(categoryEntity);
@@ -121,17 +116,16 @@ namespace MemShop.API.Controllers
         }
 
         [HttpPatch("{categoryId}")]
-        public IActionResult PartiallyUpdatedCategory(int categoryId, 
+        public IActionResult PartiallyUpdatedCategory(int categoryId,
             [FromBody] JsonPatchDocument<CategoryForUpdateDto> patchDoc)
         {
-            if (!_categoryInfoRepository.IsCategoryExist(categoryId))
+            var categoryEntity = _categoryService
+                .GetCategoryById(categoryId);
+            
+            if (categoryEntity == null)
             {
                 return NotFound();
             }
-
-            var categoryEntity = _categoryInfoRepository
-                .GetCategory(categoryId, false);
-
             var categoryToPatch = _mapper
                 .Map<CategoryForUpdateDto>(categoryEntity);
 
@@ -156,9 +150,7 @@ namespace MemShop.API.Controllers
 
             _mapper.Map(categoryToPatch, categoryEntity);
 
-            _categoryInfoRepository.UpdateCategory(categoryEntity);
-
-            _categoryInfoRepository.Save();
+            _categoryService.UpdateCategory(categoryEntity);
 
             return NoContent();
         }
@@ -166,19 +158,13 @@ namespace MemShop.API.Controllers
         [HttpDelete("{categoryId}")]
         public IActionResult DeleteCategory(int categoryId)
         {
-            if (!_categoryInfoRepository.IsCategoryExist(categoryId))
+            var categoryEntity = _categoryService.GetCategoryById(categoryId);
+            if (categoryEntity == null)
             {
                 return NotFound();
             }
 
-            var categoryEntity = _categoryInfoRepository.GetCategory(categoryId, false);
-            if(categoryEntity == null)
-            {
-                return NotFound();
-            }
-
-            _categoryInfoRepository.DeleteCategory(categoryEntity);
-            _categoryInfoRepository.Save();
+            _categoryService.DeleteCategory(categoryEntity);
 
             return NoContent();
         }

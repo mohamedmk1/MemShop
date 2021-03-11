@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using MemShop.API.Models;
-using MemShop.API.Services;
+using MemShop.API.Models.Provider;
+using MemShop.Data.Entities;
+using MemShop.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -11,17 +13,17 @@ using System.Threading.Tasks;
 namespace MemShop.API.Controllers
 {
     [ApiController]
-    [Route("api/providers")]
+    [Route("api/[controller]")]
     public class ProvidersController : ControllerBase
     {
-        private readonly IProviderRepository _providerRepository;
+        private readonly IProviderService _providerService;
         private readonly IMapper _mapper;
 
-        public ProvidersController(IProviderRepository providerRepository,
+        public ProvidersController(IProviderService providerService,
             IMapper mapper)
         {
-            _providerRepository = providerRepository
-               ?? throw new ArgumentNullException(nameof(providerRepository));
+            _providerService = providerService
+               ?? throw new ArgumentNullException(nameof(providerService));
             _mapper = mapper
                 ?? throw new ArgumentNullException(nameof(mapper));
         }
@@ -29,7 +31,7 @@ namespace MemShop.API.Controllers
         [HttpGet]
         public IActionResult GetProviders()
         {
-            var providerEntities = _providerRepository.GetProviders();
+            var providerEntities = _providerService.GetAllWithProducts();
 
             return Ok(_mapper.Map<IEnumerable<ProviderDto>>(providerEntities));
         }
@@ -37,7 +39,7 @@ namespace MemShop.API.Controllers
         [HttpGet("{id}", Name = "GetProvider")]
         public IActionResult GetProvider(int id)
         {
-            var provider = _providerRepository.GetProvider(id);
+            var provider = _providerService.GetProviderById(id);
 
             if (provider == null)
             {
@@ -51,13 +53,12 @@ namespace MemShop.API.Controllers
         public IActionResult CreateProvider([FromBody] ProviderDtoForCreation payload)
         {
             var finalProvider = _mapper
-                .Map<Entities.Provider>(payload);
+                .Map<Provider>(payload);
 
-            _providerRepository.AddProvider(finalProvider);
-            _providerRepository.Save();
+            _providerService.CreateProvider(finalProvider);
 
             var createdProviderToReturn = _mapper
-                .Map<Models.ProviderDto>(finalProvider);
+                .Map<ProviderDto>(finalProvider);
 
             return CreatedAtRoute(
                 "GetProvider",
@@ -71,7 +72,7 @@ namespace MemShop.API.Controllers
         {
 
 
-            var providerEntity = _providerRepository.GetProvider(providerId);
+            var providerEntity = _providerService.GetProviderById(providerId);
 
             if (providerEntity == null)
             {
@@ -80,12 +81,10 @@ namespace MemShop.API.Controllers
 
             _mapper.Map(payload, providerEntity);
 
-            _providerRepository.UpdateProvider(providerEntity);
-
-            _providerRepository.Save();
+            _providerService.UpdateProvider(providerEntity);
 
             var updatedProviderToReturn = _mapper
-                .Map<Models.ProviderDto>(providerEntity);
+                .Map<ProviderDto>(providerEntity);
 
             return CreatedAtRoute(
                 "GetProvider",
@@ -96,15 +95,14 @@ namespace MemShop.API.Controllers
         [HttpDelete("{providerId}")]
         public IActionResult DeleteProvider(int providerId)
         {
-            var providerEntity = _providerRepository.GetProvider(providerId);
+            var providerEntity = _providerService.GetProviderById(providerId);
 
             if (providerEntity == null)
             {
                 return NotFound();
             }
 
-            _providerRepository.DeleteProvider(providerEntity);
-            _providerRepository.Save();
+            _providerService.DeleteProvider(providerEntity);
 
             return NoContent();
         }

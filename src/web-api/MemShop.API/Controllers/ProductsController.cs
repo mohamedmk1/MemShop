@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MemShop.API.Models;
-using MemShop.API.Services;
+using MemShop.Data.Entities;
+using MemShop.Services;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -18,18 +19,18 @@ namespace MemShop.API.Controllers
 
         public IMapper _mapper { get; }
 
-        private readonly ICategoryInfoRepository _categoryInfoRepository;
+        private readonly IProductService _productservice;
 
-        public ProductsController(ILogger<ProductsController> logger, 
-            ICategoryInfoRepository categoryInfoRepository,
+        public ProductsController(ILogger<ProductsController> logger,
+            IProductService productservice,
             IMapper mapper)
         {
-            _logger = logger 
+            _logger = logger
                 ?? throw new ArgumentNullException(nameof(logger));
             _mapper = mapper
                 ?? throw new ArgumentNullException(nameof(mapper));
-            _categoryInfoRepository = categoryInfoRepository 
-                ?? throw new ArgumentNullException(nameof(categoryInfoRepository));
+            _productservice = productservice
+                ?? throw new ArgumentNullException(nameof(productservice));
         }
 
         [HttpGet]
@@ -37,17 +38,16 @@ namespace MemShop.API.Controllers
         {
             try
             {
-                if (!_categoryInfoRepository.IsCategoryExist(categoryId))
+                var products = _productservice.GetAllByCategoryId(categoryId);
+
+                if (products is null)
                 {
                     _logger.LogInformation($"category id with {categoryId} was not found !");
                     return NotFound();
                 }
-
-                var products = _categoryInfoRepository.GetProducts(categoryId);
-
                 return Ok(_mapper.Map<IEnumerable<ProductDto>>(products));
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 _logger.LogCritical($"Exception while getting product of category with id {categoryId}.", ex);
                 return StatusCode(500, "A problem happened while handling your request.");
@@ -57,16 +57,11 @@ namespace MemShop.API.Controllers
         [HttpGet("{productId}", Name = "GetProduct")]
         public IActionResult GetProduct(int categoryId, int productId)
         {
-            if (!_categoryInfoRepository.IsCategoryExist(categoryId))
+            var product = _productservice.GetProductForCategory(categoryId, productId);
+
+            if (product is null)
             {
                 _logger.LogInformation($"category id with {categoryId} was not found !");
-                return NotFound();
-            }
-
-            var product = _categoryInfoRepository.GetProductForCategory(categoryId, productId);
-
-            if (product == null)
-            {
                 return NotFound();
             }
 
@@ -76,10 +71,11 @@ namespace MemShop.API.Controllers
         [HttpPost()]
         public IActionResult CreateProduct(int categoryId, [FromBody] ProductForCreationDto payload)
         {
+            //could be added in a validator or service ?
             if (payload.Label == payload.Description)
             {
                 ModelState.AddModelError(
-                    "Description", 
+                    "Description",
                     "Label product must be different from description.");
             }
 
@@ -88,15 +84,14 @@ namespace MemShop.API.Controllers
                 return BadRequest();
             }
 
-            if (!_categoryInfoRepository.IsCategoryExist(categoryId))
+            var finalProduct = _mapper.Map<Product>(payload);
+
+            finalProduct = _productservice.CreateProductForCategory(categoryId, finalProduct);
+
+            if (finalProduct is null)
             {
                 return NotFound();
             }
-
-            var finalProduct = _mapper.Map<Entities.Product>(payload);
-
-            _categoryInfoRepository.AddProductForCategory(categoryId, finalProduct);
-            _categoryInfoRepository.Save();
 
             var createdProductToReturn = _mapper
                 .Map<Models.ProductDto>(finalProduct);
@@ -122,38 +117,25 @@ namespace MemShop.API.Controllers
                 return BadRequest();
             }
 
-
-            if (!_categoryInfoRepository.IsCategoryExist(categoryId))
-            {
-                return NotFound();
-            }
-
-            var productEntity = _categoryInfoRepository
+            var productEntity = _productservice
                 .GetProductForCategory(categoryId, productId);
-            if(productEntity == null)
+            if (productEntity == null)
             {
                 return NotFound();
             }
 
             _mapper.Map(payload, productEntity);
 
-            _categoryInfoRepository.UpdateProduct(categoryId, productEntity);
-
-            _categoryInfoRepository.Save();
+            _productservice.UpdateProduct(productEntity);
 
             return NoContent();
         }
 
         [HttpPatch("{productId}")]
-        public IActionResult PartiallyUpdateProduct(int categoryId, int productId, 
+        public IActionResult PartiallyUpdateProduct(int categoryId, int productId,
             [FromBody] JsonPatchDocument<ProductForUpdateDto> patchDoc)
         {
-            if (!_categoryInfoRepository.IsCategoryExist(categoryId))
-            {
-                return NotFound();
-            }
-
-            var productEntity = _categoryInfoRepository
+            var productEntity = _productservice
                 .GetProductForCategory(categoryId, productId);
             if (productEntity == null)
             {
@@ -165,11 +147,11 @@ namespace MemShop.API.Controllers
 
             patchDoc.ApplyTo(productToPatch, ModelState);
 
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return BadRequest();
             }
-            
+
             if (productToPatch.Label == productToPatch.Description)
             {
                 ModelState.AddModelError(
@@ -184,9 +166,7 @@ namespace MemShop.API.Controllers
 
             _mapper.Map(productToPatch, productEntity);
 
-            _categoryInfoRepository.UpdateProduct(categoryId, productEntity);
-
-            _categoryInfoRepository.Save();
+            _productservice.UpdateProduct(productEntity);
 
             return NoContent();
         }
@@ -194,19 +174,14 @@ namespace MemShop.API.Controllers
         [HttpDelete("{productId}")]
         public IActionResult DeleteProduct(int categoryId, int productId)
         {
-            if (!_categoryInfoRepository.IsCategoryExist(categoryId))
-            {
-                return NotFound();
-            }
-
-            var productEntity = _categoryInfoRepository
+            var productEntity = _productservice
                 .GetProductForCategory(categoryId, productId);
             if (productEntity == null)
             {
                 return NotFound();
             }
 
-            _categoryInfoRepository.DeleteProduct(categoryId, productEntity);
+            _productservice.DeleteProduct(productEntity);
 
             return NoContent();
         }

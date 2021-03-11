@@ -1,6 +1,6 @@
 using AutoMapper;
-using MemShop.API.Contexts;
-using MemShop.API.Services;
+using MemShop.Data;
+using MemShop.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -31,9 +31,10 @@ namespace MemShop.API
 
             var connectionString = _configuration.GetSection("ConnectionStrings:MemShopDBConnectionString").Value;
 
-            services.AddDbContext<CategoryInfoContext>(o => 
+            services.AddDbContext<MemShopDbContext>(o => 
             {
-                o.UseSqlServer(connectionString);
+                o.UseSqlServer(connectionString, x
+                    => x.MigrationsAssembly("MemShop.Data"));
             });
 
             services.AddCors(options =>
@@ -49,8 +50,12 @@ namespace MemShop.API
                 });
             });
 
-            services.AddScoped<IProviderRepository, ProviderRepository>();
-            services.AddScoped<ICategoryInfoRepository, CategoryInfoRepository>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+            services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<IProviderService, ProviderService>();
+
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 

@@ -1,8 +1,6 @@
 ﻿using AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using MemShop.API.Models;
+using MemShop.Data.Entities;
 
 namespace MemShop.API.Profiles
 {
@@ -10,10 +8,10 @@ namespace MemShop.API.Profiles
     {
         public CategoryProfile()
         {
-            CreateMap<Entities.Category, Models.CategoryWithoutProductsDto>();
-            CreateMap<Entities.Category, Models.CategoryDto>();
-            CreateMap<Models.CategoryForCreationDto, Entities.Category>();
-            CreateMap<Models.CategoryForUpdateDto, Entities.Category>()
+            CreateMap<Category, CategoryWithoutProductsDto>();
+            CreateMap<Category, CategoryDto>();
+            CreateMap<CategoryForCreationDto, Category>();
+            CreateMap<CategoryForUpdateDto, Category>()
                 .ReverseMap();
         }
     }
