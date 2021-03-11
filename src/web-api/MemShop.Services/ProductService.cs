@@ -24,7 +24,9 @@ namespace MemShop.Services
         {
             if (_unitOfWork.Categories.DoesExist(categoryId))
             {
-                _unitOfWork.Products.Add(product);
+                var category = _unitOfWork.Categories.GetByIdWithProducts(categoryId);
+                product.ProviderId = 1;
+                category.Products.Add(product);
                 _unitOfWork.Commit();
                 return product;
             }
