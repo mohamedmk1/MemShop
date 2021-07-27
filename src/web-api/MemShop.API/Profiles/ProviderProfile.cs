@@ -1,8 +1,7 @@
 ﻿using AutoMapper;
 using MemShop.API.Models;
 using MemShop.API.Models.Provider;
-using MemShop.Data.Entities;
-
+using MemShop.Domain.Providers;
 
 namespace MemShop.API.Profiles
 {

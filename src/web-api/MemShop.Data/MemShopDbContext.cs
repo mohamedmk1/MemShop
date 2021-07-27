@@ -1,4 +1,7 @@
-﻿using MemShop.Data.Entities;
+﻿using MemShop.Domain.CustomerTypes;
+using MemShop.Domain.ProductCategories;
+using MemShop.Domain.Products;
+using MemShop.Domain.Providers;
 using Microsoft.EntityFrameworkCore;
 
 namespace MemShop.Data

@@ -1,4 +1,4 @@
-﻿using MemShop.Data.Entities;
+﻿using MemShop.Domain.Products;
 using System;
 using System.Collections.Generic;
 using System.Text;

@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using MemShop.API.Models;
-using MemShop.Data.Entities;
+using MemShop.Domain.ProductCategories;
 
 namespace MemShop.API.Profiles
 {

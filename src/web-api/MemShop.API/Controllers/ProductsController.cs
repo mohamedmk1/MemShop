@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using MemShop.API.Models;
-using MemShop.Data.Entities;
+using MemShop.Domain.Products;
 using MemShop.Services;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;

@@ -1,5 +1,6 @@
 using AutoMapper;
 using MemShop.Data;
+using MemShop.Domain.Interfaces;
 using MemShop.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;

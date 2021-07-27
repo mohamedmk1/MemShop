@@ -1,5 +1,5 @@
-﻿using MemShop.Data.Entities;
-using MemShop.Data.Repositories.Interfaces;
+﻿using MemShop.Domain.ProductCategories;
+using MemShop.Domain.Products;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

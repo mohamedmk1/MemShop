@@ -1,14 +1,17 @@
 ﻿using MemShop.Data.Repositories;
-using MemShop.Data.Repositories.Interfaces;
+using MemShop.Domain.Interfaces;
+using MemShop.Domain.ProductCategories;
+using MemShop.Domain.Products;
+using MemShop.Domain.Providers;
 
 namespace MemShop.Data
 {
     public class UnitOfWork : IUnitOfWork
     {
         private readonly MemShopDbContext _context;
-        private CategoryRepository _categoryRepository;
-        private ProductRepository _productRepository;
-        private ProviderRepository _providerRepository;
+        private readonly CategoryRepository _categoryRepository;
+        private readonly ProductRepository _productRepository;
+        private readonly ProviderRepository _providerRepository;
 
         public UnitOfWork(MemShopDbContext context)
         {

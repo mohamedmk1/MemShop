@@ -1,5 +1,6 @@
 ﻿using MemShop.Data;
-using MemShop.Data.Entities;
+using MemShop.Domain.Interfaces;
+using MemShop.Domain.Products;
 using System;
 using System.Collections.Generic;
 using System.Text;

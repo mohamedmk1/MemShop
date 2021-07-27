@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using MemShop.API.Models;
 using MemShop.API.Models.Provider;
-using MemShop.Data.Entities;
+using MemShop.Domain.Providers;
 using MemShop.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Text;
 
-namespace MemShop.Data.Repositories.Interfaces
+namespace MemShop.Domain.Interfaces
 {
     public interface IRepository<TEntity> where TEntity : class
     {

@@ -1,9 +1,10 @@
-﻿using System;
+﻿using MemShop.Domain.Products;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace MemShop.Data.Entities
+namespace MemShop.Domain.Providers
 {
     public class Provider
     {

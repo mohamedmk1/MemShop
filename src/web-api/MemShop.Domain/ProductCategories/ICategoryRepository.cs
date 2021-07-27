@@ -1,6 +1,7 @@
-﻿using MemShop.Data.Entities;
+﻿using MemShop.Domain.Interfaces;
+using MemShop.Domain.Products;
 
-namespace MemShop.Data.Repositories.Interfaces
+namespace MemShop.Domain.ProductCategories
 {
     public interface ICategoryRepository : IRepository<Category>
     {

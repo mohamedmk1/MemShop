@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MemShop.Data\MemShop.Data.csproj" />
+    <ProjectReference Include="..\MemShop.Domain\MemShop.Domain.csproj" />
     <ProjectReference Include="..\MemShop.Services\MemShop.Services.csproj" />
   </ItemGroup>
 

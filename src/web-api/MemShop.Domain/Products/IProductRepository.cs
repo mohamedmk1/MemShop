@@ -1,7 +1,7 @@
-﻿using MemShop.Data.Entities;
+﻿using MemShop.Domain.Interfaces;
 using System.Collections.Generic;
 
-namespace MemShop.Data.Repositories.Interfaces
+namespace MemShop.Domain.Products
 {
     public interface IProductRepository : IRepository<Product>
     {
