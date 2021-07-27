@@ -8,9 +8,9 @@ using System.Text;
 
 namespace MemShop.Data.Repositories
 {
-    class CategoryRepository : Repository<Category>, ICategoryRepository
+    class ProductCategoryRepository : Repository<ProductCategory>, IProductCategoryRepository
     {
-        public CategoryRepository(MemShopDbContext context) : base(context)
+        public ProductCategoryRepository(MemShopDbContext context) : base(context)
         { }
         public bool DoesExist(int categoryId)
         {
@@ -18,7 +18,7 @@ namespace MemShop.Data.Repositories
                 .Any(c => c.Id == categoryId);
         }
 
-        public Category GetByIdWithProducts(int id)
+        public ProductCategory GetByIdWithProducts(int id)
         {
             return MemShopDbContext.Categories
                 .Include(c => c.Products)

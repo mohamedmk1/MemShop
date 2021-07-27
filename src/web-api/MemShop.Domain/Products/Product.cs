@@ -26,7 +26,7 @@ namespace MemShop.Domain.Products
         [MaxLength(50)]
         public string Description { get; set; }
         [ForeignKey("CategoryId")]
-        public Category Category { get; set; }
+        public ProductCategory Category { get; set; }
         public int CategoryId { get; set; }
         [ForeignKey("ProviderId")]
         public Provider Provider { get; set; }

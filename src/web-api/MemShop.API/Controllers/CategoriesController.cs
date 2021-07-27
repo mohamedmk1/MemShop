@@ -11,12 +11,12 @@ namespace MemShop.API.Controllers
 {
     [ApiController]
     [Route("api/categories")]
-    public class CategoriesController : ControllerBase
+    public class ProductCategoriesController : ControllerBase
     {
-        private readonly ICategoryService _categoryService;
+        private readonly IProductCategoryService _categoryService;
         private readonly IMapper _mapper;
 
-        public CategoriesController(ICategoryService categoryService,
+        public ProductCategoriesController(IProductCategoryService categoryService,
             IMapper mapper)
         {
             _categoryService = categoryService
@@ -67,7 +67,7 @@ namespace MemShop.API.Controllers
             }
 
             var finalCategory = _mapper
-                .Map<Category>(payload);
+                .Map<ProductCategory>(payload);
 
             _categoryService.CreateCategory(finalCategory);
 

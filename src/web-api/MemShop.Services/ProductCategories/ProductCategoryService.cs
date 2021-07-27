@@ -7,10 +7,10 @@ using System.Text;
 
 namespace MemShop.Services
 {
-    public class CategoryService : ICategoryService
+    public class ProductCategoryService : IProductCategoryService
     {
         private readonly IUnitOfWork _unitOfWork;
-        public CategoryService(IUnitOfWork unitOfWork)
+        public ProductCategoryService(IUnitOfWork unitOfWork)
         {
             this._unitOfWork = unitOfWork;
         }
@@ -20,32 +20,32 @@ namespace MemShop.Services
             _unitOfWork.Commit();
         }
 
-        public Category CreateCategory(Category category)
+        public ProductCategory CreateCategory(ProductCategory category)
         {
             _unitOfWork.Categories.Add(category);
             _unitOfWork.Commit();
             return category;
         }
 
-        public void DeleteCategory(Category category)
+        public void DeleteCategory(ProductCategory category)
         {
             _unitOfWork.Categories.Remove(category);
             _unitOfWork.Commit();
         }
 
-        public Category GetCategoryByIdWithProducts(int id)
+        public ProductCategory GetCategoryByIdWithProducts(int id)
         {
             return _unitOfWork.Categories
                 .GetByIdWithProducts(id);
         }
 
-        public IEnumerable<Category> GetCategories()
+        public IEnumerable<ProductCategory> GetCategories()
         {
             return _unitOfWork.Categories
                 .GetAll();
         }
 
-        public Category GetCategoryById(int id)
+        public ProductCategory GetCategoryById(int id)
         {
             return _unitOfWork.Categories
                 .GetById(id);
@@ -57,7 +57,7 @@ namespace MemShop.Services
                 .DoesExist(categoryId);
         }
 
-        public void UpdateCategory(Category category)
+        public void UpdateCategory(ProductCategory category)
         {
             _unitOfWork.Categories.Update(category);
         }

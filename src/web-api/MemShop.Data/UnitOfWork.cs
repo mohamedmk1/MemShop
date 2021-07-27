@@ -9,7 +9,7 @@ namespace MemShop.Data
     public class UnitOfWork : IUnitOfWork
     {
         private readonly MemShopDbContext _context;
-        private readonly CategoryRepository _categoryRepository;
+        private readonly ProductCategoryRepository _categoryRepository;
         private readonly ProductRepository _productRepository;
         private readonly ProviderRepository _providerRepository;
 
@@ -17,7 +17,7 @@ namespace MemShop.Data
         {
             this._context = context;
         }
-        public ICategoryRepository Categories => _categoryRepository ?? new CategoryRepository(_context);
+        public IProductCategoryRepository Categories => _categoryRepository ?? new ProductCategoryRepository(_context);
 
         public IProductRepository Products => _productRepository ?? new ProductRepository(_context);
 

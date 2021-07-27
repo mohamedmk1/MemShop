@@ -8,7 +8,7 @@ namespace MemShop.Data
 {
     public class MemShopDbContext : DbContext
     {
-        public DbSet<Category> Categories { get; set; }
+        public DbSet<ProductCategory> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Provider> Providers { get; set; }
         public DbSet<CustomerType> CustomerTypes { get; set; }
@@ -37,21 +37,21 @@ namespace MemShop.Data
                        Country = "Canada"
                    }
                );
-            modelBuilder.Entity<Category>()
+            modelBuilder.Entity<ProductCategory>()
                 .HasData(
-                    new Category()
+                    new ProductCategory()
                     {
                         Id = 1,
                         Label = "Category 1",
                         Description = "Desc Category 1"
                     },
-                    new Category()
+                    new ProductCategory()
                     {
                         Id = 2,
                         Label = "Category 2",
                         Description = "Desc Category 2"
                     },
-                    new Category()
+                    new ProductCategory()
                     {
                         Id = 3,
                         Label = "Category 3",

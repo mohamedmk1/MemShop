@@ -8,7 +8,8 @@ using System.Threading.Tasks;
 
 namespace MemShop.Domain.ProductCategories
 {
-    public class Category
+    [Table("ProductCategories")]
+    public class ProductCategory
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

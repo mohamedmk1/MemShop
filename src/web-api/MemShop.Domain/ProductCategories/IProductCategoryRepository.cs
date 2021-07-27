@@ -3,9 +3,9 @@ using MemShop.Domain.Products;
 
 namespace MemShop.Domain.ProductCategories
 {
-    public interface ICategoryRepository : IRepository<Category>
+    public interface IProductCategoryRepository : IRepository<ProductCategory>
     {
-        Category GetByIdWithProducts(int id);
+        ProductCategory GetByIdWithProducts(int id);
         void AddProductForCategory(int categoryId, Product product);
         bool DoesExist(int categoryId);
     }

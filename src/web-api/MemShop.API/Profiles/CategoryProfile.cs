@@ -8,10 +8,10 @@ namespace MemShop.API.Profiles
     {
         public CategoryProfile()
         {
-            CreateMap<Category, CategoryWithoutProductsDto>();
-            CreateMap<Category, CategoryDto>();
-            CreateMap<CategoryForCreationDto, Category>();
-            CreateMap<CategoryForUpdateDto, Category>()
+            CreateMap<ProductCategory, CategoryWithoutProductsDto>();
+            CreateMap<ProductCategory, CategoryDto>();
+            CreateMap<CategoryForCreationDto, ProductCategory>();
+            CreateMap<CategoryForUpdateDto, ProductCategory>()
                 .ReverseMap();
         }
     }

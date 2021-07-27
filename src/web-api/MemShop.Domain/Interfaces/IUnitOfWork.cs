@@ -9,7 +9,7 @@ namespace MemShop.Domain.Interfaces
 {
     public interface IUnitOfWork
     {
-        ICategoryRepository Categories { get; }
+        IProductCategoryRepository Categories { get; }
         IProductRepository Products { get; }
         IProviderRepository Providers { get; }
         int Commit();
