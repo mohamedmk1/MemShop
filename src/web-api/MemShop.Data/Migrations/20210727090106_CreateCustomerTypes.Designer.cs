@@ -3,14 +3,16 @@ using MemShop.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MemShop.Data.Migrations
 {
     [DbContext(typeof(MemShopDbContext))]
-    partial class MemShopDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210727090106_CreateCustomerTypes")]
+    partial class CreateCustomerTypes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -8,6 +8,7 @@ namespace MemShop.Data
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Provider> Providers { get; set; }
+        public DbSet<CustomerType> CustomerTypes { get; set; }
 
         public MemShopDbContext(DbContextOptions<MemShopDbContext> options) : base(options)
         { }
@@ -113,6 +114,33 @@ namespace MemShop.Data
                         ProviderId = 1
                     }
                  );
+
+            modelBuilder.Entity<CustomerType>()
+                .HasData(
+                    new CustomerType()
+                    { 
+                        Id = 1,
+                        Label = "Gold",
+                        Description = "30% discount and gain 100 loyalty points"
+                    },
+                    new CustomerType()
+                    {
+                        Id = 2,
+                        Label = "Student",
+                        Description = "20% discount and gain 20 loyalty points"
+                    },
+                    new CustomerType()
+                    {
+                        Id = 3,
+                        Label = "Senior",
+                        Description = "25% discount and gain 30 loyalty points"
+                    },
+                    new CustomerType()
+                    {
+                        Id = 4,
+                        Label = "Anonymous"
+                    }
+                );
 
             base.OnModelCreating(modelBuilder);
         }
