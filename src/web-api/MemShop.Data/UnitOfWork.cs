@@ -1,4 +1,5 @@
 ﻿using MemShop.Data.Repositories;
+using MemShop.Domain.CustomerTypes;
 using MemShop.Domain.Interfaces;
 using MemShop.Domain.ProductCategories;
 using MemShop.Domain.Products;
@@ -12,6 +13,7 @@ namespace MemShop.Data
         private readonly ProductCategoryRepository _categoryRepository;
         private readonly ProductRepository _productRepository;
         private readonly ProviderRepository _providerRepository;
+        private readonly CustomerTypeRepository _customerTypeRepository;
 
         public UnitOfWork(MemShopDbContext context)
         {
@@ -22,6 +24,7 @@ namespace MemShop.Data
         public IProductRepository Products => _productRepository ?? new ProductRepository(_context);
 
         public IProviderRepository Providers => _providerRepository ?? new ProviderRepository(_context);
+        public ICustomerTypeRepository CustomerTypes => _customerTypeRepository ?? new CustomerTypeRepository(_context);
 
         public int Commit()
         {

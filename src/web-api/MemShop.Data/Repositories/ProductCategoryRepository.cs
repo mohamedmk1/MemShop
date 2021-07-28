@@ -11,7 +11,8 @@ namespace MemShop.Data.Repositories
     class ProductCategoryRepository : Repository<ProductCategory>, IProductCategoryRepository
     {
         public ProductCategoryRepository(MemShopDbContext context) : base(context)
-        { }
+        {}
+
         public bool DoesExist(int categoryId)
         {
             return MemShopDbContext.Categories
