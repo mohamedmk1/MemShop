@@ -1,4 +1,5 @@
-﻿using MemShop.Domain.ProductCategories;
+﻿using MemShop.Domain.CustomerTypes;
+using MemShop.Domain.ProductCategories;
 using MemShop.Domain.Products;
 using MemShop.Domain.Providers;
 using System;
@@ -12,6 +13,7 @@ namespace MemShop.Domain.Interfaces
         IProductCategoryRepository Categories { get; }
         IProductRepository Products { get; }
         IProviderRepository Providers { get; }
+        ICustomerTypeRepository CustomerTypes { get; }
         int Commit();
 
     }

@@ -60,6 +60,7 @@ namespace MemShop.Services
         public void UpdateCategory(ProductCategory category)
         {
             _unitOfWork.Categories.Update(category);
+            _unitOfWork.Commit();
         }
     }
 }
