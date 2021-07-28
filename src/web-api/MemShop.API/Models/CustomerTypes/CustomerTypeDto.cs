@@ -1,17 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MemShop.API.Models
+namespace MemShop.API.Models.CustomerTypes
 {
-    public class CategoryForCreationDto
+    public class CustomerTypeDto
     {
-        [Required]
-        [MaxLength(50)]
+        public int Id { get; set; }
         public string Label { get; set; }
-        [MaxLength(255)]
         public string Description { get; set; }
     }
 }

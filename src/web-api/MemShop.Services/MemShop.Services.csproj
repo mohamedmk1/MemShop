@@ -8,8 +8,4 @@
     <ProjectReference Include="..\MemShop.Data\MemShop.Data.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="CustomerTypes\" />
-  </ItemGroup>
-
 </Project>

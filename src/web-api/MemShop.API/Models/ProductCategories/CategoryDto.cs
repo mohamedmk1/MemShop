@@ -1,9 +1,10 @@
-﻿using System;
+﻿using MemShop.API.Models.Products;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MemShop.API.Models
+namespace MemShop.API.Models.ProductCategories
 {
     public class CategoryDto
     {

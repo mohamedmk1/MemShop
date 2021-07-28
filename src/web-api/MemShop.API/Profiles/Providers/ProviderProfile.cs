@@ -1,9 +1,8 @@
 ﻿using AutoMapper;
-using MemShop.API.Models;
-using MemShop.API.Models.Provider;
+using MemShop.API.Models.Providers;
 using MemShop.Domain.Providers;
 
-namespace MemShop.API.Profiles
+namespace MemShop.API.Profiles.Providers
 {
     public class ProviderProfile : Profile
     {

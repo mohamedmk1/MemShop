@@ -1,13 +1,13 @@
 ﻿using AutoMapper;
 using MemShop.API.Models;
+using MemShop.API.Models.Products;
 using MemShop.Domain.Products;
-using MemShop.Services;
+using MemShop.Services.Products;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace MemShop.API.Controllers
 {
@@ -94,7 +94,7 @@ namespace MemShop.API.Controllers
             }
 
             var createdProductToReturn = _mapper
-                .Map<Models.ProductDto>(finalProduct);
+                .Map<ProductDto>(finalProduct);
 
             return CreatedAtRoute(
                 "GetProduct",

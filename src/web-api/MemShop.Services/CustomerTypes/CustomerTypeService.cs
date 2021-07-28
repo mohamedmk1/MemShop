@@ -1,8 +1,6 @@
 ﻿using MemShop.Domain.CustomerTypes;
 using MemShop.Domain.Interfaces;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace MemShop.Services.CustomerTypes
 {
@@ -45,7 +43,7 @@ namespace MemShop.Services.CustomerTypes
             return _unitOfWork.CustomerTypes.DoesExist(customerTypeId);
         }
 
-        public void UpdateCustomerTyp(CustomerType customerType)
+        public void UpdateCustomerType(CustomerType customerType)
         {
             _unitOfWork.CustomerTypes.Update(customerType);
             _unitOfWork.Commit();

@@ -14,7 +14,19 @@ namespace MemShop.Domain.CustomerTypes
         [Required]
         [MaxLength(50)]
         public string Label { get; set; }
-        [MaxLength(50)]
+        [MaxLength(255)]
         public string Description { get; set; }
+
+        public CustomerType()
+        {
+                
+        }
+
+        public CustomerType(int id, string label, string description)
+        {
+            this.Id = id;
+            this.Label = label;
+            this.Description = description;
+        }
     }
 }

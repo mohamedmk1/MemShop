@@ -1,12 +1,12 @@
 ﻿using AutoMapper;
-using MemShop.API.Models;
+using MemShop.API.Models.ProductCategories;
 using MemShop.Domain.ProductCategories;
 
-namespace MemShop.API.Profiles
+namespace MemShop.API.Profiles.ProductCategories
 {
-    public class CategoryProfile : Profile
+    public class ProductCategoryProfile : Profile
     {
-        public CategoryProfile()
+        public ProductCategoryProfile()
         {
             CreateMap<ProductCategory, CategoryWithoutProductsDto>();
             CreateMap<ProductCategory, CategoryDto>();

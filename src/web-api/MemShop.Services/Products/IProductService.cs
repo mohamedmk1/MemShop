@@ -1,9 +1,7 @@
 ﻿using MemShop.Domain.Products;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
-namespace MemShop.Services
+namespace MemShop.Services.Products
 {
     public interface IProductService
     {

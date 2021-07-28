@@ -1,11 +1,8 @@
-﻿using MemShop.Data;
-using MemShop.Domain.Interfaces;
+﻿using MemShop.Domain.Interfaces;
 using MemShop.Domain.Products;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
-namespace MemShop.Services
+namespace MemShop.Services.Products
 {
     public class ProductService : IProductService
     {
@@ -41,9 +38,9 @@ namespace MemShop.Services
 
         public IEnumerable<Product> GetAllByCategoryId(int categoryId)
         {
-           return (_unitOfWork.Categories.DoesExist(categoryId))
-                ? _unitOfWork.Products.GetAllByCategoryId(categoryId)
-                : null;
+            return (_unitOfWork.Categories.DoesExist(categoryId))
+                 ? _unitOfWork.Products.GetAllByCategoryId(categoryId)
+                 : null;
         }
 
         public Product GetProductById(int id)

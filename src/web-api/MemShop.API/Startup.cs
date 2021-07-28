@@ -1,7 +1,10 @@
 using AutoMapper;
 using MemShop.Data;
 using MemShop.Domain.Interfaces;
-using MemShop.Services;
+using MemShop.Services.CustomerTypes;
+using MemShop.Services.ProductCategories;
+using MemShop.Services.Products;
+using MemShop.Services.Providers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -56,6 +59,7 @@ namespace MemShop.API
             services.AddScoped<IProductCategoryService, ProductCategoryService>();
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<IProviderService, ProviderService>();
+            services.AddScoped<ICustomerTypeService, CustomerTypeService>();
 
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());

@@ -1,14 +1,10 @@
 ﻿using AutoMapper;
-using MemShop.API.Models;
-using MemShop.API.Models.Provider;
+using MemShop.API.Models.Providers;
 using MemShop.Domain.Providers;
-using MemShop.Services;
-using Microsoft.AspNetCore.Http;
+using MemShop.Services.Providers;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace MemShop.API.Controllers
 {

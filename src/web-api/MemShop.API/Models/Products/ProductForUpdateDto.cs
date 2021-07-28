@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace MemShop.API.Models
+namespace MemShop.API.Models.Products
 {
-    public class ProductForCreationDto
+    public class ProductForUpdateDto
     {
         [Required]
         [MaxLength(10)]
@@ -14,7 +10,6 @@ namespace MemShop.API.Models
         [Required]
         [MaxLength(50)]
         public string Label { get; set; }
-        [Required]
         public double Price { get; set; }
         [MaxLength(255)]
         public string Image { get; set; }

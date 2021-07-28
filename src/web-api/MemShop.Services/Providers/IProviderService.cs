@@ -1,9 +1,7 @@
 ﻿using MemShop.Domain.Providers;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
-namespace MemShop.Services
+namespace MemShop.Services.Providers
 {
     public interface IProviderService
     {

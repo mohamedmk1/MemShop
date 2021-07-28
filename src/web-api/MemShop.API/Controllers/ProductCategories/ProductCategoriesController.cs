@@ -1,13 +1,13 @@
 ﻿using AutoMapper;
-using MemShop.API.Models;
+using MemShop.API.Models.ProductCategories;
 using MemShop.Domain.ProductCategories;
-using MemShop.Services;
+using MemShop.Services.ProductCategories;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 
-namespace MemShop.API.Controllers
+namespace MemShop.API.Controllers.ProductCategories
 {
     [ApiController]
     [Route("api/categories")]
@@ -54,8 +54,7 @@ namespace MemShop.API.Controllers
 
         [HttpPost()]
         public IActionResult CreateCategory([FromBody] CategoryForCreationDto payload)
-        { 
-            // In validator or service ?
+        {
             if (payload.Label == payload.Description)
             {
                 ModelState.AddModelError("Description", "Label category must be different from description.");
@@ -72,7 +71,7 @@ namespace MemShop.API.Controllers
             _categoryService.CreateCategory(finalCategory);
 
             var createdCategoryToReturn = _mapper
-                .Map<Models.CategoryDto>(finalCategory);
+                .Map<CategoryDto>(finalCategory);
 
             return CreatedAtRoute(
                 "GetCategory",
@@ -107,7 +106,7 @@ namespace MemShop.API.Controllers
             _categoryService.UpdateCategory(categoryEntity);
 
             var updatedCategoryToReturn = _mapper
-                .Map<Models.CategoryDto>(categoryEntity);
+                .Map<CategoryDto>(categoryEntity);
 
             return CreatedAtRoute(
                 "GetCategory",
@@ -121,7 +120,7 @@ namespace MemShop.API.Controllers
         {
             var categoryEntity = _categoryService
                 .GetCategoryById(categoryId);
-            
+
             if (categoryEntity == null)
             {
                 return NotFound();

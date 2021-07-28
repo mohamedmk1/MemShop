@@ -20,9 +20,7 @@ namespace MemShop.Data
             this._context = context;
         }
         public IProductCategoryRepository Categories => _categoryRepository ?? new ProductCategoryRepository(_context);
-
         public IProductRepository Products => _productRepository ?? new ProductRepository(_context);
-
         public IProviderRepository Providers => _providerRepository ?? new ProviderRepository(_context);
         public ICustomerTypeRepository CustomerTypes => _customerTypeRepository ?? new CustomerTypeRepository(_context);
 

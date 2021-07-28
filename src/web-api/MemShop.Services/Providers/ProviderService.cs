@@ -1,10 +1,8 @@
 ﻿using MemShop.Domain.Interfaces;
 using MemShop.Domain.Providers;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
-namespace MemShop.Services
+namespace MemShop.Services.Providers
 {
     public class ProviderService : IProviderService
     {

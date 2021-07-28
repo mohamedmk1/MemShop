@@ -1,11 +1,9 @@
 ﻿using MemShop.Domain.Interfaces;
 using MemShop.Domain.ProductCategories;
 using MemShop.Domain.Products;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
-namespace MemShop.Services
+namespace MemShop.Services.ProductCategories
 {
     public class ProductCategoryService : IProductCategoryService
     {

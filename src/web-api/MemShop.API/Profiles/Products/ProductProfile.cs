@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using MemShop.API.Models;
+using MemShop.API.Models.Products;
 using MemShop.Domain.Products;
 
-namespace MemShop.API.Profiles
+namespace MemShop.API.Profiles.Products
 {
     public class ProductProfile : Profile
     {
@@ -10,7 +10,7 @@ namespace MemShop.API.Profiles
         {
             CreateMap<Product, ProductDto>();
             CreateMap<ProductForCreationDto, Product>();
-            CreateMap<ProductForUpdateDto,Product>()
+            CreateMap<ProductForUpdateDto, Product>()
                 .ReverseMap();
         }
     }
