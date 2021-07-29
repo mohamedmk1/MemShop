@@ -1,4 +1,5 @@
 ﻿using MemShop.Domain.Customers;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
 namespace MemShop.Data.Repositories.Customers
@@ -16,12 +17,15 @@ namespace MemShop.Data.Repositories.Customers
 
         public CustomerType GetByIdWithCustomers(int id)
         {
-            throw new System.NotImplementedException();
+            return MemShopDbContext.CustomerTypes
+                .Include(ct => ct.Customers)
+                .SingleOrDefault(ct => ct.Id == id);
         }
 
         public void AddCustomerForCustomerType(int customerTypeId, Customer customer)
         {
-            throw new System.NotImplementedException();
+            var customerType = GetByIdWithCustomers(customerTypeId);
+            customerType.Customers.Add(customer);
         }
 
         private MemShopDbContext MemShopDbContext

@@ -11,6 +11,7 @@ namespace MemShop.Data
         public DbSet<Product> Products { get; set; }
         public DbSet<Provider> Providers { get; set; }
         public DbSet<CustomerType> CustomerTypes { get; set; }
+        public DbSet<Customer> Customers { get; set; }
 
         public MemShopDbContext(DbContextOptions<MemShopDbContext> options) : base(options)
         { }
