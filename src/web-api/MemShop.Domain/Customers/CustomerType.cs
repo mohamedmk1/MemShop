@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MemShop.Domain.Customers
@@ -13,6 +14,8 @@ namespace MemShop.Domain.Customers
         public string Label { get; set; }
         [MaxLength(255)]
         public string Description { get; set; }
+        public ICollection<Customer> Customers { get; set; } 
+            = new List<Customer>();
 
         public CustomerType()
         {

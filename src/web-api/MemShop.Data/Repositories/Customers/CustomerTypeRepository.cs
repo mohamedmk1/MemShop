@@ -14,6 +14,16 @@ namespace MemShop.Data.Repositories.Customers
                 .Any(ct => ct.Id == customerTypeId);
         }
 
+        public CustomerType GetByIdWithCustomers(int id)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void AddCustomerForCustomerType(int customerTypeId, Customer customer)
+        {
+            throw new System.NotImplementedException();
+        }
+
         private MemShopDbContext MemShopDbContext
         {
             get { return Context as MemShopDbContext; }
