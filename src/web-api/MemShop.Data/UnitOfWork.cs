@@ -25,7 +25,7 @@ namespace MemShop.Data
         public IProductRepository Products => _productRepository ?? new ProductRepository(_context);
         public IProviderRepository Providers => _providerRepository ?? new ProviderRepository(_context);
         public ICustomerTypeRepository CustomerTypes => _customerTypeRepository ?? new CustomerTypeRepository(_context);
-        public ICustomerRepository Customer => _customerRepository ?? new CustomerRepository(_context);
+        public ICustomerRepository Customers => _customerRepository ?? new CustomerRepository(_context);
 
         public int Commit()
         {

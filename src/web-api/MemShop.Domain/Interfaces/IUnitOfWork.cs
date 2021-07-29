@@ -10,6 +10,7 @@ namespace MemShop.Domain.Interfaces
         IProductRepository Products { get; }
         IProviderRepository Providers { get; }
         ICustomerTypeRepository CustomerTypes { get; }
+        ICustomerRepository Customers { get;  }
         int Commit();
 
     }

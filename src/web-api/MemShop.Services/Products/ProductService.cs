@@ -58,6 +58,7 @@ namespace MemShop.Services.Products
         public void UpdateProduct(Product product)
         {
             _unitOfWork.Products.Update(product);
+            _unitOfWork.Commit();
         }
     }
 }

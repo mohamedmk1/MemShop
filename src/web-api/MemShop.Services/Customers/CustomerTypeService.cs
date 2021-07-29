@@ -13,6 +13,11 @@ namespace MemShop.Services.Customers
             this._unitOfWork = unitOfwork;
         }
 
+        public void AddCustomerForCustomerType(int customerTypeId, Customer customer)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public CustomerType CreateCustomerType(CustomerType customerType)
         {
             _unitOfWork.CustomerTypes.Add(customerType);
@@ -31,6 +36,11 @@ namespace MemShop.Services.Customers
         {
             return _unitOfWork.CustomerTypes.GetById(id);
 
+        }
+
+        public CustomerType GetCustomerTypeByIdWithCustomers(int id)
+        {
+            return _unitOfWork.CustomerTypes.GetByIdWithCustomers(id);
         }
 
         public IEnumerable<CustomerType> GetCustomerTypes()

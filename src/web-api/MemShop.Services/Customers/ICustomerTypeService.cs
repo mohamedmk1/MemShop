@@ -10,6 +10,8 @@ namespace MemShop.Services.Customers
         IEnumerable<CustomerType> GetCustomerTypes();
         void UpdateCustomerType(CustomerType customerType);
         void DeleteCustomerType(CustomerType customerType);
+        CustomerType GetCustomerTypeByIdWithCustomers(int id);
+        void AddCustomerForCustomerType(int customerTypeId, Customer customer);
         bool IsCustomerTypeExist(int customerTypeId);
     }
 }
