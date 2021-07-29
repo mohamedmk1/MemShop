@@ -1,7 +1,8 @@
-﻿using MemShop.Data.Repositories;
-using MemShop.Domain.CustomerTypes;
+﻿using MemShop.Data.Repositories.Customers;
+using MemShop.Data.Repositories.Products;
+using MemShop.Data.Repositories.Providers;
+using MemShop.Domain.Customers;
 using MemShop.Domain.Interfaces;
-using MemShop.Domain.ProductCategories;
 using MemShop.Domain.Products;
 using MemShop.Domain.Providers;
 

@@ -1,10 +1,6 @@
-﻿using MemShop.Domain.CustomerTypes;
-using MemShop.Domain.ProductCategories;
+﻿using MemShop.Domain.Customers;
 using MemShop.Domain.Products;
 using MemShop.Domain.Providers;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace MemShop.Domain.Interfaces
 {

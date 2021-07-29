@@ -1,5 +1,4 @@
-﻿using MemShop.Domain.CustomerTypes;
-using MemShop.Domain.ProductCategories;
+﻿using MemShop.Domain.Customers;
 using MemShop.Domain.Products;
 using MemShop.Domain.Providers;
 using Microsoft.EntityFrameworkCore;
@@ -121,7 +120,7 @@ namespace MemShop.Data
             modelBuilder.Entity<CustomerType>()
                 .HasData(
                     new CustomerType()
-                    { 
+                    {
                         Id = 1,
                         Label = "Gold",
                         Description = "30% discount and gain 100 loyalty points"

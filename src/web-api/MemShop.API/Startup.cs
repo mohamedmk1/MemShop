@@ -1,8 +1,7 @@
 using AutoMapper;
 using MemShop.Data;
 using MemShop.Domain.Interfaces;
-using MemShop.Services.CustomerTypes;
-using MemShop.Services.ProductCategories;
+using MemShop.Services.Customers;
 using MemShop.Services.Products;
 using MemShop.Services.Providers;
 using Microsoft.AspNetCore.Builder;
@@ -22,7 +21,7 @@ namespace MemShop.API
 
         public Startup(IConfiguration configuration)
         {
-            _configuration = configuration ?? 
+            _configuration = configuration ??
                 throw new ArgumentNullException(nameof(configuration));
         }
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -35,7 +34,7 @@ namespace MemShop.API
 
             var connectionString = _configuration.GetSection("ConnectionStrings:MemShopDBConnectionString").Value;
 
-            services.AddDbContext<MemShopDbContext>(o => 
+            services.AddDbContext<MemShopDbContext>(o =>
             {
                 o.UseSqlServer(connectionString, x
                     => x.MigrationsAssembly("MemShop.Data"));
@@ -43,7 +42,7 @@ namespace MemShop.API
 
             services.AddCors(options =>
             {
-               
+
                 options.AddDefaultPolicy(
                 builder =>
                 {

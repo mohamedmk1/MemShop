@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using MemShop.API.Models;
 using MemShop.API.Models.Products;
 using MemShop.Domain.Products;
 using MemShop.Services.Products;
@@ -9,7 +8,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 
-namespace MemShop.API.Controllers
+namespace MemShop.API.Controllers.Products
 {
     [ApiController]
     [Route("api/categories/{categoryId}/products")]
